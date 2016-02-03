@@ -1,0 +1,14 @@
+{
+  "name": "zmq_middleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "zmqMiddlewareManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mario Casciaro & Luciano Mammino",
+  "license": "ISC",
+  "dependencies": {
+    "zmq": "^2.14.0"
+  }
+}
