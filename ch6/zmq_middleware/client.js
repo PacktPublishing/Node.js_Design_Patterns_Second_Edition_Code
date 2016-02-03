@@ -11,12 +11,12 @@ var zmqm = new ZmqMiddlewareManager(request);
 
 zmqm.use(jsonMiddleware.json());
 zmqm.use({
-    inbound: function(message, next) {
-        console.log('Echoed back: ', message.data);
-        next();
-    }
+  inbound: function (message, next) {
+    console.log('Echoed back: ', message.data);
+    next();
+  }
 });
 
-setInterval(function() {
-    zmqm.send({action: 'ping', echo: Date.now()});
+setInterval(function () {
+  zmqm.send({action: 'ping', echo: Date.now()});
 }, 1000);
