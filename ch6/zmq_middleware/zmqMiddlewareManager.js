@@ -1,5 +1,6 @@
 "use strict";
 
+
 module.exports = class ZmqMiddlewareManager
 {
     constructor (socket) {
@@ -35,16 +36,17 @@ module.exports = class ZmqMiddlewareManager
     }
 
     executeMiddleware (middleware, arg, finish) {
-        middleware.forEach((middlewareFunc, index) => {
-            middlewareFunc.call(this, arg, err => {
+        function iterator(index) {
+            if(index === middleware.length) {
+                return finish && finish();
+            }
+            middleware[index].call(this, arg, err => {
                 if(err) {
                     console.log('There was an error: ' + err.message);
                 }
+                iterator.call(this, ++index);
             });
-
-            if (index === middleware.length - 1) {
-                return finish && finish();
-            }
-        });
+        }
+        iterator.call(this, 0);
     }
 };
