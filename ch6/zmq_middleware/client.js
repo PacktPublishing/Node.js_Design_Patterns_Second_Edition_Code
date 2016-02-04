@@ -11,7 +11,7 @@ var zmqm = new ZmqMiddlewareManager(request);
 
 zmqm.use(jsonMiddleware.json());
 zmqm.use({
-  inbound: (message, next) => {
+  inbound: function (message, next) {
     console.log('Echoed back: ', message.data);
     next();
   }

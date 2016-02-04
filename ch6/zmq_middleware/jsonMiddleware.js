@@ -2,11 +2,11 @@
 
 module.exports.json = () => {
   return {
-    inbound: (message, next) => {
+    inbound: function (message, next) {
       message.data = JSON.parse(message.data.toString());
       next();
     },
-    outbound: (message, next) => {
+    outbound: function (message, next) {
       message.data = new Buffer(JSON.stringify(message.data));
       next();
     }

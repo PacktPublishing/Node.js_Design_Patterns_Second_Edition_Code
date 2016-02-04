@@ -11,7 +11,7 @@ var zmqm = new ZmqMiddlewareManager(reply);
 
 zmqm.use(jsonMiddleware.json());
 zmqm.use({
-  inbound: (message, next) => {
+  inbound: function (message, next) {
     console.log('Received: ', message.data);
     if (message.data.action === 'ping') {
       this.send({action: 'pong', echo: message.data.echo});

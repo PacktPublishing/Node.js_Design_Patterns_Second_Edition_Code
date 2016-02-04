@@ -41,7 +41,7 @@ module.exports = class ZmqMiddlewareManager {
       }
       middleware[index].call(this, arg, err => {
         if (err) {
-          console.log('There was an error: ' + err.message);
+          return console.log('There was an error: ' + err.message);
         }
         iterator.call(this, ++index);
       });
