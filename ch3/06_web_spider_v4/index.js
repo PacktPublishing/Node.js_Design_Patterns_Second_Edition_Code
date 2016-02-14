@@ -5,31 +5,33 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const utilities = require('./utilities');
+const TaskQueue = require('./taskQueue');
+let downloadQueue = new TaskQueue(2);
 
 function spiderLinks(currentUrl, body, nesting, callback) {
   if(nesting === 0) {
     return process.nextTick(callback);
   }
 
-  let links = utilities.getPageLinks(currentUrl, body);  //[1]
+  let links = utilities.getPageLinks(currentUrl, body);
   if(links.length === 0) {
     return process.nextTick(callback);
   }
 
   let completed = 0, hasErrors = false;
-
-  function done(err) {
-    if(err) {
-      hasErrors = true;
-      return callback(err);
-    }
-    if(++completed === links.length && !hasErrors) {
-      return callback();
-    }
-  }
-
-  links.forEach(function(link) {
-    spider(link, nesting - 1, done);
+  links.forEach(link => {
+    downloadQueue.pushTask(done => {
+      spider(link, nesting - 1, err => {
+        if(err) {
+          hasErrors = true;
+          return callback(err);
+        }
+        if(++completed === links.length && !hasErrors) {
+          callback();
+        }
+        done();
+      });
+    });
   });
 }
 

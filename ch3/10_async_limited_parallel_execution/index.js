@@ -4,32 +4,33 @@ const request = require('request');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
+const async = require('async');
 const utilities = require('./utilities');
+
+var downloadQueue = async.queue((taskData, callback) => {
+  spider(taskData.link, taskData.nesting - 1, callback);
+}, 2);
 
 function spiderLinks(currentUrl, body, nesting, callback) {
   if(nesting === 0) {
     return process.nextTick(callback);
   }
-
-  let links = utilities.getPageLinks(currentUrl, body);  //[1]
+  let links = utilities.getPageLinks(currentUrl, body);
   if(links.length === 0) {
     return process.nextTick(callback);
   }
-
   let completed = 0, hasErrors = false;
-
-  function done(err) {
-    if(err) {
-      hasErrors = true;
-      return callback(err);
-    }
-    if(++completed === links.length && !hasErrors) {
-      return callback();
-    }
-  }
-
   links.forEach(function(link) {
-    spider(link, nesting - 1, done);
+    let taskData = {link: link, nesting: nesting};
+    downloadQueue.push(taskData, err => {
+      if(err) {
+        hasErrors = true;
+        return callback(err);
+      }
+      if(++completed === links.length && !hasErrors) {
+        callback();
+      }
+    });
   });
 }
 

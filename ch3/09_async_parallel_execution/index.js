@@ -4,6 +4,7 @@ const request = require('request');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
+const async = require('async');
 const utilities = require('./utilities');
 
 function spiderLinks(currentUrl, body, nesting, callback) {
@@ -11,26 +12,14 @@ function spiderLinks(currentUrl, body, nesting, callback) {
     return process.nextTick(callback);
   }
 
-  let links = utilities.getPageLinks(currentUrl, body);  //[1]
+  let links = utilities.getPageLinks(currentUrl, body);
   if(links.length === 0) {
     return process.nextTick(callback);
   }
 
-  let completed = 0, hasErrors = false;
-
-  function done(err) {
-    if(err) {
-      hasErrors = true;
-      return callback(err);
-    }
-    if(++completed === links.length && !hasErrors) {
-      return callback();
-    }
-  }
-
-  links.forEach(function(link) {
-    spider(link, nesting - 1, done);
-  });
+  async.each(links, (link, callback) => {
+    spider(link, nesting - 1, callback);
+  }, callback);
 }
 
 function saveFile(filename, contents, callback) {
@@ -58,13 +47,7 @@ function download(url, filename, callback) {
   });
 }
 
-let spidering = new Map();
 function spider(url, nesting, callback) {
-  if(spidering.has(url)) {
-    return process.nextTick(callback);
-  }
-  spidering.set(url, true);
-
   let filename = utilities.urlToFilename(url);
   fs.readFile(filename, 'utf8', function(err, body) {
     if(err) {

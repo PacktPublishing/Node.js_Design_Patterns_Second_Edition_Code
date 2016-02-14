@@ -4,6 +4,7 @@ const request = require('request');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 const path = require('path');
+const async = require('async');
 const utilities = require('./utilities');
 
 function spiderLinks(currentUrl, body, nesting, callback) {
@@ -12,25 +13,19 @@ function spiderLinks(currentUrl, body, nesting, callback) {
   }
 
   let links = utilities.getPageLinks(currentUrl, body);  //[1]
-  if(links.length === 0) {
-    return process.nextTick(callback);
-  }
-
-  let completed = 0, hasErrors = false;
-
-  function done(err) {
-    if(err) {
-      hasErrors = true;
-      return callback(err);
-    }
-    if(++completed === links.length && !hasErrors) {
+  function iterate(index) {
+    if(index === links.length) {
       return callback();
     }
-  }
 
-  links.forEach(function(link) {
-    spider(link, nesting - 1, done);
-  });
+    spider(links[index], nesting - 1, function(err) {
+      if(err) {
+        return callback(err);
+      }
+      iterate(index + 1);
+    });
+  }
+  iterate(0);
 }
 
 function saveFile(filename, contents, callback) {
@@ -44,27 +39,34 @@ function saveFile(filename, contents, callback) {
 
 function download(url, filename, callback) {
   console.log('Downloading ' + url);
-  request(url, (err, response, body) => {
+  let body;
+
+  async.series([
+    callback => {           //[1]
+      request(url, (err, response, resBody) => {
+        if(err) {
+          return callback(err);
+        }
+        body = resBody;
+        callback();
+      });
+    },
+
+    mkdirp.bind(null, path.dirname(filename)),    //[2]
+
+    callback => {           //[3]
+      fs.writeFile(filename, body, callback);
+    }
+  ], err => {         //[4]
+    console.log('Downloaded and saved: ' + url);
     if(err) {
       return callback(err);
     }
-    saveFile(filename, body, err => {
-      console.log('Downloaded and saved: ' + url);
-      if(err) {
-        return callback(err);
-      }
-      callback(null, body);
-    });
+    callback(null, body);
   });
 }
 
-let spidering = new Map();
 function spider(url, nesting, callback) {
-  if(spidering.has(url)) {
-    return process.nextTick(callback);
-  }
-  spidering.set(url, true);
-
   let filename = utilities.urlToFilename(url);
   fs.readFile(filename, 'utf8', function(err, body) {
     if(err) {
