@@ -1,0 +1,9 @@
+This sample demonstrates how to run a set of tasks in parallel
+by limiting their concurrency.
+
+To run the sample code, install its dependencies first:
+  npm install
+  
+Then execute the 'spider' module by providing a valid url (including the protocol)
+  node spider http://www.example.com
+
