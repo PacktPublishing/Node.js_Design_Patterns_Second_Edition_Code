@@ -1,9 +1,9 @@
 This sample demonstrates how to run a set of tasks in parallel
-by limiting their concurrency.
+using Promises.
 
-To run the sample code, install its dependencies first:
+To run the sample code first install its dependencies:
   npm install
   
 Then execute the 'spider' module by providing a valid url (including the protocol)
-  node spider http://www.example.com
+  node index http://www.example.com
 

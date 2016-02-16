@@ -9,12 +9,8 @@ const cheerio = require('cheerio');
 module.exports.urlToFilename = function urlToFilename(url) {
   let parsedUrl = urlParse(url);
   let urlPath = parsedUrl.path.split('/')
-    .filter(function(component) {
-      return component !== '';
-    })
-    .map(function(component) {
-      return slug(component);
-    })
+    .filter(component => !!component)
+    .map(component => slug(component))
     .join('/');
   let filename = path.join(parsedUrl.hostname, urlPath);
   if(!path.extname(filename).match(/htm/)) {
@@ -29,17 +25,14 @@ module.exports.getLinkUrl = function getLinkUrl(currentUrl, element) {
   let currentParsedUrl = urlParse(currentUrl);
   if(parsedLink.hostname !== currentParsedUrl.hostname
     || !parsedLink.pathname) {
-    return null;
+      return null;
   }
   return link;
 };
 
 module.exports.getPageLinks = function getPageLinks(currentUrl, body) {
   return [].slice.call(cheerio.load(body)('a'))
-    .map(function(element) {
-      return module.exports.getLinkUrl(currentUrl, element);
-    })
-    .filter(function(element) {
-      return !!element;
-    });
+    .map(element => module.exports.getLinkUrl(currentUrl, element))
+    .filter(element => !!element)
+  ;
 };

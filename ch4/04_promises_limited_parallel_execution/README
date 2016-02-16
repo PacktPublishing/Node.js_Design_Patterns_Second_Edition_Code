@@ -1,0 +1,9 @@
+This sample demonstrates how to run a set of tasks in a limited parallel flow 
+using Promises.
+
+To run the sample code first install its dependencies:
+  npm install
+  
+Then execute the 'spider' module by providing a valid url (including the protocol)
+  node spider http://www.example.com
+

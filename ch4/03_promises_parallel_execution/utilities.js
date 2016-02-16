@@ -11,8 +11,7 @@ module.exports.urlToFilename = function urlToFilename(url) {
   let urlPath = parsedUrl.path.split('/')
     .filter(component => !!component)
     .map(component => slug(component))
-    .join('/')
-    ;
+    .join('/');
   let filename = path.join(parsedUrl.hostname, urlPath);
   if(!path.extname(filename).match(/htm/)) {
     filename += '.html';
@@ -56,4 +55,3 @@ module.exports.promisify = function(callbackBasedApi) {
     });
   }
 };
-

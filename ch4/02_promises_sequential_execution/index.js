@@ -11,12 +11,12 @@ const writeFile = utilities.promisify(fs.writeFile);
 
 
 function spiderLinks(currentUrl, body, nesting) {
-  var promise = Promise.resolve();
+  let promise = Promise.resolve();
   if(nesting === 0) {
     return promise;
   }
-  var links = utilities.getPageLinks(currentUrl, body);
-  links.forEach(function(link) {
+  let links = utilities.getPageLinks(currentUrl, body);
+  links.forEach(link => {
     promise = promise.then(function() {
       return spider(link, nesting - 1);
     });
@@ -27,46 +27,38 @@ function spiderLinks(currentUrl, body, nesting) {
 
 function download(url, filename) {
   console.log('Downloading ' + url);
-  var body;
+  let body;
   return request(url)
-    .then(function(results) {
-      body = results[1];
+    .then(response => {
+      body = response.body;
       return mkdirp(path.dirname(filename));
     })
-    .then(function() {
-      return writeFile(filename, body);
-    })
-    .then(function() {
+    .then(() => writeFile(filename, body))
+    .then(() => {
       console.log('Downloaded and saved: ' + url);
       return body;
-    });
+    })
+  ;
 }
 
 function spider(url, nesting) {
-  var filename = utilities.urlToFilename(url);
+  let filename = utilities.urlToFilename(url);
   return readFile(filename, 'utf8')
     .then(
-      function(body) {
-        return spiderLinks(url, body, nesting);
-      }, 
-      function(err) {
+      (body) => (spiderLinks(url, body, nesting)),
+      (err) => {
         if(err.code !== 'ENOENT') {
           throw err;
         }
         
         return download(url, filename)
-          .then(function(body) {
-            return spiderLinks(url, body, nesting);
-          });
+          .then(body => spiderLinks(url, body, nesting))
+        ;
       }
     );
 }
 
 spider(process.argv[2], 1)
-  .then(function() {
-    console.log('Download complete');
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-
+  .then(() => console.log('Download complete'))
+  .catch(err => console.log(err))
+;

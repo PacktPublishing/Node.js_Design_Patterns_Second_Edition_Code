@@ -14,12 +14,12 @@ module.exports = class TaskQueue {
 
   next() {
     while(this.running < this.concurrency && this.queue.length) {
-      var task = this.queue.shift();
-      task(err => {
+      let task = this.queue.shift();
+      task().then(() => {
         this.running--;
         this.next();
       });
       this.running++;
     }
   }
-}
+};
