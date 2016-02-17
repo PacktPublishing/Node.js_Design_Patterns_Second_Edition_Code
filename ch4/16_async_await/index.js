@@ -3,8 +3,6 @@
 const request = require('request');
 
 function getPageHtml(url) {
-  let quote;
-
   return new Promise((resolve, reject) => {
     request(url, (error, response, body) => {
       resolve(body);
