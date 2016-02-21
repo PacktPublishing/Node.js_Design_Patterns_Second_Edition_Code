@@ -1,0 +1,14 @@
+{
+  "name": "08_streams_writable",
+  "version": "1.0.0",
+  "description": "",
+  "main": "entropyServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chance": "^1.0.0"
+  }
+}

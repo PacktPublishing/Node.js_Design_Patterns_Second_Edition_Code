@@ -1,0 +1,14 @@
+{
+  "name": "17_streams_combined",
+  "version": "1.0.0",
+  "description": "",
+  "main": "archive.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "multipipe": "^0.3.0"
+  }
+}
