@@ -25,3 +25,6 @@ let sourceStreamA = fstream.Reader({type: "Directory", path: sourceA})
 let sourceStreamB = fstream.Reader({type: "Directory", path: sourceB})
   .on('end', onEnd)
 ;
+
+sourceStreamA.pipe(pack, {end: false});
+sourceStreamB.pipe(pack, {end: false});
