@@ -1,11 +1,14 @@
 "use strict";
 
+const net = require('net');
+const fs = require('fs');
+
 function demultiplexChannel(source, destinations) {
   let currentChannel = null;
   let currentLength = null;
   source
-    .on('readable', () => { //[1]
-      var chunk;
+    .on('readable', function() { //[1]
+      let chunk;
       if(currentChannel === null) {          //[2]
       chunk = this.read(1);
       currentChannel = chunk && chunk.readUInt8(0);
