@@ -16,7 +16,7 @@ class Profiler {
       `Timer "${this.label}" took ${diff[0]} seconds and ${diff[1]} nanoseconds.`
     );
   }
-};
+}
 
 module.exports = function(label) {
   if(process.env.NODE_ENV === 'development') {
@@ -29,4 +29,4 @@ module.exports = function(label) {
   } else {
     throw new Error('Must set NODE_ENV');
   }
-}
+};
