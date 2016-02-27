@@ -1,6 +1,6 @@
 "use strict";
 
-var app = require('koa')();
+const app = require('koa')();
 
 app.use(require('./rateLimit'));
 

@@ -1,13 +1,13 @@
 "use strict";
 
-var zmq = require('zmq');
-var ZmqMiddlewareManager = require('./zmqMiddlewareManager');
-var jsonMiddleware = require('./jsonMiddleware');
+const zmq = require('zmq');
+const ZmqMiddlewareManager = require('./zmqMiddlewareManager');
+const jsonMiddleware = require('./jsonMiddleware');
 
-var request = zmq.socket('req');
+let request = zmq.socket('req');
 request.connect('tcp://127.0.0.1:5000');
 
-var zmqm = new ZmqMiddlewareManager(request);
+let zmqm = new ZmqMiddlewareManager(request);
 
 zmqm.use(jsonMiddleware.json());
 zmqm.use({

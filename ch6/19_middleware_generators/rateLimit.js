@@ -1,6 +1,6 @@
 "use strict";
 
-var lastCall = new Map();
+let lastCall = new Map();
 
 module.exports = function *(next) {
 
@@ -15,4 +15,4 @@ module.exports = function *(next) {
   // outbound
   lastCall.set(this.ip, now);
   this.set('X-RateLimit-Reset', now.getTime() + 1000);
-}
+};
