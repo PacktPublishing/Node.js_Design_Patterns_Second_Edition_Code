@@ -3,7 +3,7 @@
 function decorate(component) {
   // attaches a new method to the object
   component.greetings = function() {
-    return 'Hey!';
+    return 'Hi!';
   };
   
   return component;

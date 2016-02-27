@@ -1,0 +1,14 @@
+{
+  "name": "14_adapter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fsAdapter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "level": "^1.4.0"
+  }
+}

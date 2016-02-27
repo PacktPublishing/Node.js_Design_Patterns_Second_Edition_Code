@@ -11,7 +11,7 @@ function decorate(component) {
   
   //new method
   Decorator.prototype.greetings = function() {
-    return 'Hey!';
+    return 'Hi!';
   };
   
   //delegated method

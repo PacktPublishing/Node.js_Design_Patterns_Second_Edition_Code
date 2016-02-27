@@ -3,7 +3,7 @@
 module.exports = function levelSubscribe(db) {
   db.subscribe = (pattern, listener) => {       //[1]
     db.on('put', (key, val) => {         //[2]
-      var match = Object.keys(pattern).every(
+      let match = Object.keys(pattern).every(
         k => (pattern[k] === val[k])     //[3]
       );
       
@@ -13,4 +13,4 @@ module.exports = function levelSubscribe(db) {
     });
   };
   return db;
-}
+};
