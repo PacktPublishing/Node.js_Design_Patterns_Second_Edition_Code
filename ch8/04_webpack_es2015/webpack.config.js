@@ -3,9 +3,20 @@
 const path = require('path');
 
 module.exports = {
-  entry:  path.join(__dirname, "main.js"),
+  entry:  path.join(__dirname, "src", "main.js"),
   output: {
-    path: __dirname,
+    path: path.join(__dirname, "dist"),
     filename: "bundle.js"
+  },
+  module: {
+    loaders: [
+      {
+        test: path.join(__dirname, "src"),
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
+      }
+    ]
   }
-}
+};
