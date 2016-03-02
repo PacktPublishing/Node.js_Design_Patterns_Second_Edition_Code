@@ -1,0 +1,15 @@
+{
+  "name": "03_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sayHello.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mustache": "^2.2.1",
+    "webpack": "^1.12.14"
+  }
+}
