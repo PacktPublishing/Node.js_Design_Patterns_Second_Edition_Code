@@ -3,6 +3,6 @@
 const mustache = require('mustache');
 let template = '<h1>Hello <i>{{name}}</i></h1>';
 mustache.parse(template);
-module.exports.sayHello = (toWhom) => {
+module.exports.sayHello = toWhom => {
   return mustache.render(template, {name: toWhom});
 };
