@@ -1,3 +1,4 @@
 "use strict";
 
-module.exports = alert;
+var toastr = require('toastr');
+module.exports = toastr.info;

@@ -1,5 +1,5 @@
 {
-  "name": "07_buildtime_module_swapping",
+  "name": "08_buildtime_module_swapping_b",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "alertify": "^0.3.0",
+    "jquery": "^2.2.1",
+    "toastr": "^2.1.2",
     "webpack": "^1.12.14"
   }
 }
