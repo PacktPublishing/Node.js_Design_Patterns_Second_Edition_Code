@@ -2,14 +2,12 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const os = require('os');
 
 let definePlugin = new webpack.DefinePlugin({
-  "typeof __BROWSER__": "true"
-});
-
-let uglify = new webpack.optimize.UglifyJsPlugin({
-  beautify: true,
-  dead_code: true
+  "__NOW__": JSON.stringify((new Date()).toString()),
+  "__PLATFORM__": JSON.stringify(os.platform()),
+  "__HOST__": JSON.stringify(os.hostname())
 });
 
 module.exports = {
@@ -18,5 +16,5 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js"
   },
-  plugins: [definePlugin, uglify]
+  plugins: [definePlugin]
 };
