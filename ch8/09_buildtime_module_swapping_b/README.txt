@@ -1,4 +1,4 @@
-This example shows how to implement compile time compile time module swapping for universal apps.
+This example shows how to implement compile time module swapping for universal apps.
 
 Before running the examples you need to install the dependencies with:
 
