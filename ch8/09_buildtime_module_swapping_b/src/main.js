@@ -1,8 +1,4 @@
 "use strict";
 
-var alert = require('./alertServer');
-
-window.onload =function(){
-  alert('This is a nicer alert');
-};
-
+const alert = require('./alertServer');
+alert('Morning comes whether you set the alarm or not!');
