@@ -26,5 +26,11 @@ window.onload = () => {
     ]
   };
 
-  ReactDOM.render(<div><AuthorBooks {... joyce}/><AuthorBooks {... wells}/></div>, document.getElementById('main'))
+  ReactDOM.render(
+    <div>
+      <AuthorBooks {... joyce}/>
+      <AuthorBooks {... wells}/>
+    </div>,
+    document.getElementById('main')
+  );
 };
