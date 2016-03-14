@@ -1,4 +1,5 @@
-This example shows how to implement a simple React component that is rendered in the browser.
+This example shows how to build a reusable React component and render two 
+instance of them in the browser.
 
 Before running the examples you need to install the dependencies with:
 
