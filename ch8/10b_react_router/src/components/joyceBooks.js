@@ -1,6 +1,7 @@
 "use strict";
 
 const React = require('react');
+const Link = require('react-router').Link;
 
 const books = [
   'Dubliners',
@@ -20,6 +21,7 @@ class JoyceBooks extends React.Component {
               <li key={key} className="book">{book}</li>
           )
         }</ul>
+        <Link to="/">Go back to index</Link>
       </div>
     );
   }

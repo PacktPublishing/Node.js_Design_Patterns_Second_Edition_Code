@@ -1,5 +1,5 @@
 {
-  "name": "12_react_reusable_components",
+  "name": "10_react_rendering_browser",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,6 +15,7 @@
     "babel-preset-react": "^6.5.0",
     "react": "^15.0.0-rc.1",
     "react-dom": "^15.0.0-rc.1",
+    "react-router": "^2.0.1",
     "webpack": "^1.12.14"
   }
 }
