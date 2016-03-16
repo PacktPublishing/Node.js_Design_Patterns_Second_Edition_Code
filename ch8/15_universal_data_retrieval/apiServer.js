@@ -35,7 +35,7 @@ app.get('/authors/:id', (req, res, next) => {
 
 server.listen(3001, (err) => {
   if (err) {
-    console.error(err);
+    return console.error(err);
   }
   console.info('API Server running on http://localhost:3001');
 });

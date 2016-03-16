@@ -18,7 +18,7 @@ class JoyceBooks extends React.Component {
         <h2>James Joyce's major works</h2>
         <ul className="books">{
           books.map( (book, key) =>
-              <li key={key} className="book">{book}</li>
+            <li key={key} className="book">{book}</li>
           )
         }</ul>
         <Link to="/">Go back to index</Link>

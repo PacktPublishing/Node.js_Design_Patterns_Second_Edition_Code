@@ -46,7 +46,7 @@ app.get('*', (req, res) => {
 
 server.listen(3000, (err) => {
   if (err) {
-    console.error(err);
+    return console.error(err);
   }
   console.info('WebServer running on http://localhost:3000');
 });
