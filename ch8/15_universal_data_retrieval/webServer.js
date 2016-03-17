@@ -2,11 +2,11 @@
 
 const http = require('http');
 const Express = require('express');
-var favicon = require('serve-favicon');
+const favicon = require('serve-favicon');
 const httpProxy = require('http-proxy');
 const React = require('react');
 const AsyncProps = require('async-props').default;
-const loadPropsOnServer = require('async-props').loadPropsOnServer;
+const loadPropsOnServer = AsyncProps.loadPropsOnServer;
 const ReactDom = require('react-dom/server');
 const Router = require('react-router');
 const routesConfig = require('./src/routesConfig');
@@ -14,9 +14,8 @@ const routesConfig = require('./src/routesConfig');
 const app = new Express();
 const server = new http.Server(app);
 
-let targetUrl = 'http://localhost:3001';
 const proxy = httpProxy.createProxyServer({
-  target: targetUrl
+  target: 'http://localhost:3001'
 });
 
 app.set('view engine', 'ejs');

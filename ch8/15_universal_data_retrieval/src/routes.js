@@ -9,7 +9,11 @@ const routesConfig = require('./routesConfig');
 
 class Routes extends React.Component {
   render() {
-    return <Router history={browserHistory} routes={routesConfig} render={(props) => <AsyncProps {...props}/>}/>;
+    return <Router
+      history={browserHistory}
+      routes={routesConfig}
+      render={(props) => <AsyncProps {...props}/>}
+    />;
   }
 }
 
