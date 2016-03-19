@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 let definePlugin = new webpack.DefinePlugin({
-  "typeof __BROWSER__": "true"
+  "__BROWSER__": "true"
 });
 
 let uglify = new webpack.optimize.UglifyJsPlugin({
