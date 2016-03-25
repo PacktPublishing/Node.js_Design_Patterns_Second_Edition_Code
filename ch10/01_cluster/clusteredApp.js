@@ -1,11 +1,13 @@
-var cluster = require('cluster');
-var os = require('os');
+"use strict";
+
+const cluster = require('cluster');
+const os = require('os');
 
 if(cluster.isMaster) {
-  var cpus = os.cpus().length;
-  for (var i = 0; i < cpus; i++) {
+  let cpus = os.cpus().length;
+  for (let i = 0; i < cpus; i++) {  // [1]
     cluster.fork();
   }
 } else {
-  require('./app');
+  require('./app');  // [2]
 }

@@ -1,13 +1,15 @@
-var cluster = require('cluster');
-var os = require('os');
+"use strict";
 
-if(cluster.isMaster) {
-  var cpus = os.cpus().length;
-  for (var i = 0; i < cpus; i++) {
+const cluster = require('cluster');
+const os = require('os');
+
+if (cluster.isMaster) {
+  let cpus = os.cpus().length;
+  for (let i = 0; i < cpus; i++) {
     cluster.fork();
   }
   
-  cluster.on('exit', function(worker, code) {
+  cluster.on('exit', (worker, code) => {
     if(code != 0) {
       console.log('Worker crashed. Starting a new worker');
       cluster.fork();
