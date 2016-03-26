@@ -1,6 +1,15 @@
 {
+  "name": "05_service_registry",
+  "version": "1.0.0",
+  "description": "This sample shows how to build a Node.js-based load balancer which works in combination with a service registry.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "http-proxy": "^1.6.2",
+    "http-proxy": "^1.13.2",
     "seaport": "^2.0.9"
   }
 }

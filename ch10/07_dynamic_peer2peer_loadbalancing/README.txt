@@ -5,7 +5,7 @@ This is a variation of the previous sample, using a service registry.
 First install the dependencies:
   npm install
 
-Make usre you have a seaport server running
+Make sure you have a seaport server running
   seaport listen 9090
   
 Start some instances of an api-service server:

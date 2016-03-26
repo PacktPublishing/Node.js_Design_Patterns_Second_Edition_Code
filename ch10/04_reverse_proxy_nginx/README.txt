@@ -7,7 +7,8 @@ To try the sample, first start multiple instances of the same HTTP server, using
   node app 8083
   node app 8084
   
-Then, use the provided configuration (nginx.patch.conf) as reference to modify the global Nginx configuration file (usually located into /etc/nginx/nginx.conf).
+Then, use the provided configuration (nginx.patch.conf) as reference to modify the global Nginx configuration file
+(usually located into /etc/nginx/nginx.conf).
 Then reload the server with:
   nginx -s reload
 
