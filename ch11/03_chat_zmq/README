@@ -1,0 +1,18 @@
+This sample demonstrates how to integrate a chat application using ZMQ
+
+As pre-requisite to this sample, you first need to install the ZMQ binaries:
+  http://zeromq.org/intro:get-the-software
+
+To try the sample install the dependencies:
+  npm install
+
+Then run (in separate terminals):
+  node app --http 8080 --pub 5000 --sub 5001 --sub 5002
+  node app --http 8081 --pub 5001 --sub 5000 --sub 5002
+  node app --http 8082 --pub 5002 --sub 5000 --sub 5001
+  
+You can try to access those three addresses at the same time, and
+see how messages are exchanged from one instance to the others:
+  http://localhost:8080
+  http://localhost:8081
+  http://localhost:8082
