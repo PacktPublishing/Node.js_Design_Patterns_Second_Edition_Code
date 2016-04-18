@@ -1,3 +1,2 @@
-node_modules
-.idea/
-.bin
+node_modules/
+.bin/
