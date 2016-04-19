@@ -1,12 +1,14 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var http = require('http');
+"use strict";
 
-var app = module.exports = express();
+const Express = require('express');
+const bodyParser = require('body-parser');
+const errorHandler = require('errorhandler');
+const http = require('http');
+
+const app = module.exports = new Express();
 app.use(bodyParser.json());
 
-var diContainer = require('./lib/diContainer')();
+const diContainer = require('./lib/diContainer')();
 
 diContainer.register('dbName', 'example-db');
 diContainer.register('tokenSecret', 'SHHH!');
@@ -14,13 +16,12 @@ diContainer.factory('db', require('./lib/db'));
 diContainer.factory('authService', require('./lib/authService'));
 diContainer.factory('authController', require('./lib/authController'));
 
-var authController = diContainer.get('authController');
+const authController = diContainer.get('authController');
 
 app.post('/login', authController.login);
 app.get('/checkToken', authController.checkToken);
 
-
 app.use(errorHandler());
-http.createServer(app).listen(3000, function () {
+http.createServer(app).listen(3000, () => {
   console.log('Express server started');
 });

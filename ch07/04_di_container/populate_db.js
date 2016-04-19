@@ -1,26 +1,27 @@
-var sublevel = require('level-sublevel');
-var level = require('level');
-var bcrypt = require('bcrypt');
-var uuid = require('node-uuid');
-var async = require('async');
+"use strict";
 
-var db = sublevel(level('example-db', {valueEncoding: 'json'}));
-var usersDb = db.sublevel('users');
+const sublevel = require('level-sublevel');
+const level = require('level');
+const bcrypt = require('bcrypt');
+const uuid = require('node-uuid');
+const async = require('async');
 
-var users = [
+const db = sublevel(level('example-db', {valueEncoding: 'json'}));
+const usersDb = db.sublevel('users');
+
+const users = [
   {username: 'alice', password: 'secret'},
   {username: 'bob', password: 'secret'},
   {username: 'trudy', password: 'secret'}
 ]
 
-async.forEach(users, function(user, callback) {
+async.forEach(users, (user, callback) => {
   usersDb.put(user.username, {
     hash: bcrypt.hashSync(user.password, 8)
   }, callback);
-}, function(err) {
-  if(err) {
+}, (err) => {
+  if (err) {
     return console.log(err);
   }
   console.log('DB populated');
 });
-

@@ -1,9 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var http = require('http');
+"use strict";
 
-var app = module.exports = express();
+const Express = require('express');
+const bodyParser = require('body-parser');
+const errorHandler = require('errorhandler');
+const http = require('http');
+
+const app = module.exports = new Express();
 app.use(bodyParser.json());
 
 //Use the express app instance as service locator
@@ -12,13 +14,13 @@ app.set('tokenSecret', 'SHHH!');
 app.set('db', require('./lib/db')(app));
 app.set('authService', require('./lib/authService')(app));
 
-var authController = require('./lib/authController');
+let authController = require('./lib/authController');
 
 app.post('/login', authController.login);
 app.get('/checkToken', authController.checkToken);
 
 
 app.use(errorHandler());
-http.createServer(app).listen(3000, function () {
+http.createServer(app).listen(3000, () => {
   console.log('Express server started');
 });

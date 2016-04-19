@@ -1,32 +1,34 @@
-var argsList = require('args-list');
+"use strict";
 
-module.exports = function() {
-  var dependencies = {};
-  var factories = {};
-  var diContainer = {};
+const argsList = require('args-list');
+
+module.exports = () => {
+  const dependencies = {};
+  const factories = {};
+  const diContainer = {};
   
-  diContainer.factory = function(name, factory) {
+  diContainer.factory = (name, factory) => {
     factories[name] = factory;
   };
   
-  diContainer.register = function(name, dep) {
+  diContainer.register = (name, dep) => {
     dependencies[name] = dep;
   };
   
-  diContainer.get = function(name) {
-    if(!dependencies[name]) {
-      var factory = factories[name];
+  diContainer.get = (name) => {
+    if (!dependencies[name]) {
+      let factory = factories[name];
       dependencies[name] = factory && 
           diContainer.inject(factory);
-      if(!dependencies[name]) {
+      if (!dependencies[name]) {
         throw new Error('Cannot find module: ' + name);
       }
     }
     return dependencies[name];
   };
   
-  diContainer.inject = function(factory) {
-    var args = argsList(factory)
+  diContainer.inject = (factory) => {
+    let args = argsList(factory)
       .map(function(dependency) {
         return diContainer.get(dependency);
       });

@@ -1,7 +1,9 @@
-var level = require('level');
-var sublevel = require('level-sublevel');
+"use strict";
 
-module.exports = function(dbName) {
+const level = require('level');
+const sublevel = require('level-sublevel');
+
+module.exports = (dbName) => {
   return sublevel(
     level(dbName, {valueEncoding: 'json'})
   );

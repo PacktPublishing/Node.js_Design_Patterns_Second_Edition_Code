@@ -1,14 +1,14 @@
+"use strict";
 
+const authController = {};
 
-var authController = {};
-
-authController.login = function (req, res, next) {
+authController.login = (req, res, next) => {
   //Dependency retrieved from the express app
   //which acts as service locator
-  var authService = req.app.get('authService');
+  const authService = req.app.get('authService');
   
   authService.login(req.body.username, req.body.password,
-    function(err, result) {
+    (err, result) => {
       if(err) {
         return res.status(401).send({
           ok: false,
@@ -20,13 +20,13 @@ authController.login = function (req, res, next) {
   );
 };
 
-authController.checkToken = function (req, res, next) {
+authController.checkToken = (req, res, next) => {
   //Dependency retrieved from the express app
   //which acts as service locator
-  var authService = req.app.get('authService');
+  const authService = req.app.get('authService');
   
   authService.checkToken(req.query.token,
-    function(err, result) {
+    (err, result) => {
       if(err) {
         return res.status(401).send({
           ok: false,

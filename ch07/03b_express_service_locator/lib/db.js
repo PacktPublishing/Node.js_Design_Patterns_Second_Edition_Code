@@ -1,8 +1,10 @@
-var level = require('level');
-var sublevel = require('level-sublevel');
+"use strict";
 
-module.exports = function(serviceLocator) {
-  var dbName = serviceLocator.get('dbName');
+const level = require('level');
+const sublevel = require('level-sublevel');
+
+module.exports = (serviceLocator) => {
+  const dbName = serviceLocator.get('dbName');
 
   return sublevel(
     level(dbName, {valueEncoding: 'json'})
