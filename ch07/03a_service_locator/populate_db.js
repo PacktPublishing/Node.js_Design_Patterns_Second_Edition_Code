@@ -13,14 +13,14 @@ const users = [
   {username: 'alice', password: 'secret'},
   {username: 'bob', password: 'secret'},
   {username: 'trudy', password: 'secret'}
-]
+];
 
 async.forEach(users, (user, callback) => {
   usersDb.put(user.username, {
     hash: bcrypt.hashSync(user.password, 8)
   }, callback);
 }, (err) => {
-  if(err) {
+  if (err) {
     return console.log(err);
   }
   console.log('DB populated');

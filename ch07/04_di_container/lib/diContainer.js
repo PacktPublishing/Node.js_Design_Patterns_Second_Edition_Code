@@ -1,6 +1,6 @@
 "use strict";
 
-const argsList = require('args-list');
+const fnArgs = require('parse-fn-args');
 
 module.exports = () => {
   const dependencies = {};
@@ -28,7 +28,7 @@ module.exports = () => {
   };
   
   diContainer.inject = (factory) => {
-    let args = argsList(factory)
+    let args = fnArgs(factory)
       .map(function(dependency) {
         return diContainer.get(dependency);
       });

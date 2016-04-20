@@ -13,7 +13,7 @@ const users = [
   {username: 'alice', password: 'secret'},
   {username: 'bob', password: 'secret'},
   {username: 'trudy', password: 'secret'}
-]
+];
 
 async.forEach(users, (user, callback) => {
   usersDb.put(user.username, {

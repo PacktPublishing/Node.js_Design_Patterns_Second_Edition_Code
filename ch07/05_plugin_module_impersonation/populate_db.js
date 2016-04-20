@@ -1,3 +1,5 @@
+"use strict";
+
 var sublevel = require('level-sublevel');
 var level = require('level');
 var bcrypt = require('bcrypt');
