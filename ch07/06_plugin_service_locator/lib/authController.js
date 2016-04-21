@@ -1,12 +1,13 @@
+"use strict";
 
-module.exports = function(serviceLocator) {
-  var authService = serviceLocator.get('authService');
-  var authController = {};
+module.exports = (serviceLocator) => {
+  const authService = serviceLocator.get('authService');
+  const authController = {};
   
-  authController.login = function (req, res, next) {
+  authController.login = (req, res, next) => {
     authService.login(req.body.username, req.body.password,
-      function(err, result) {
-        if(err) {
+      (err, result) => {
+        if (err) {
           return res.status(401).send({
             ok: false,
             error: 'Invalid username/password'
@@ -17,10 +18,10 @@ module.exports = function(serviceLocator) {
     );
   };
 
-  authController.checkToken = function (req, res, next) {
+  authController.checkToken = (req, res, next) => {
     authService.checkToken(req.query.token,
-      function(err, result) {
-        if(err) {
+      (err, result) => {
+        if (err) {
           return res.status(401).send({
             ok: false,
             error: 'Token is invalid or expired'  
@@ -32,4 +33,4 @@ module.exports = function(serviceLocator) {
   };
   
   return authController;
-}
+};

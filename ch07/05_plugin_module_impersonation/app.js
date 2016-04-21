@@ -1,11 +1,13 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var http = require('http');
+"use strict";
 
-var authController = require('./lib/authController');
+const Express = require('express');
+const bodyParser = require('body-parser');
+const errorHandler = require('errorhandler');
+const http = require('http');
 
-var app = module.exports = express();
+const authController = require('./lib/authController');
+
+const app = module.exports = new Express();
 app.use(bodyParser.json());
 
 require('authsrv-plugin-logout');
@@ -14,6 +16,6 @@ app.post('/login', authController.login);
 app.get('/checkToken', authController.checkToken);
 
 app.use(errorHandler());
-http.createServer(app).listen(3000, function () {
+http.createServer(app).listen(3000, () => {
   console.log('Express server started');
 });

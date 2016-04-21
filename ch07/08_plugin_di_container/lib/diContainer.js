@@ -1,32 +1,34 @@
-var argsList = require('args-list');
+"use strict";
+
+const fnArgs = require('parse-fn-args');
 
 module.exports = function() {
-  var dependencies = {};
-  var factories = {};
-  var diContainer = {};
+  const dependencies = {};
+  const factories = {};
+  const diContainer = {};
   
-  diContainer.factory = function(name, factory) {
+  diContainer.factory = (name, factory) => {
     factories[name] = factory;
   };
   
-  diContainer.register = function(name, dep) {
+  diContainer.register = (name, dep) => {
     dependencies[name] = dep;
   };
   
-  diContainer.get = function(name) {
+  diContainer.get = (name) => {
     if(!dependencies[name]) {
-      var factory = factories[name];
+      const factory = factories[name];
       dependencies[name] = factory && 
           diContainer.inject(factory);
-      if(!dependencies[name]) {
+      if (!dependencies[name]) {
         throw new Error('Cannot find module: ' + name);
       }
     }
     return dependencies[name];
   };
   
-  diContainer.inject = function(factory) {
-    var args = argsList(factory)
+  diContainer.inject = (factory) => {
+    let args = fnArgs(factory)
       .map(function(dependency) {
         return diContainer.get(dependency);
       });
@@ -34,4 +36,4 @@ module.exports = function() {
   };
   
   return diContainer;
-}
+};

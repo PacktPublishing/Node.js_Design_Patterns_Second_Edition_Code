@@ -1,18 +1,20 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var errorHandler = require('errorhandler');
-var http = require('http');
+"use strict";
 
-var app = module.exports = express();
+const Express = require('express');
+const bodyParser = require('body-parser');
+const errorHandler = require('errorhandler');
+const http = require('http');
+
+const app = module.exports = new Express();
 app.use(bodyParser.json());
 
-var dbFactory = require('./lib/db');
-var authServiceFactory = require('./lib/authService');
-var authControllerFactory = require('./lib/authController');
+const dbFactory = require('./lib/db');
+const authServiceFactory = require('./lib/authService');
+const authControllerFactory = require('./lib/authController');
 
-var db = dbFactory('example-db');
-var authService = authServiceFactory(db, 'SHHH!');
-var authController = authControllerFactory(authService);
+const db = dbFactory('example-db');
+const authService = authServiceFactory(db, 'SHHH!');
+const authController = authControllerFactory(authService);
 
 //initialize plugin
 require('authsrv-plugin-logout')(app, authService, db);
@@ -20,8 +22,7 @@ require('authsrv-plugin-logout')(app, authService, db);
 app.post('/login', authController.login);
 app.get('/checkToken', authController.checkToken);
 
-
 app.use(errorHandler());
-http.createServer(app).listen(3000, function () {
+http.createServer(app).listen(3000, () => {
   console.log('Express server started');
 });

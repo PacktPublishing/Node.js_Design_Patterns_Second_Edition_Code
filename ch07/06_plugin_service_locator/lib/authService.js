@@ -1,22 +1,24 @@
-var jwt = require('jwt-simple');
-var bcrypt = require('bcrypt');
+"use strict";
 
-module.exports = function(serviceLocator) {
-  var db = serviceLocator.get('db');
-  var tokenSecret = serviceLocator.get('tokenSecret');
+const jwt = require('jwt-simple');
+const bcrypt = require('bcrypt');
+
+module.exports = (serviceLocator) => {
+  const db = serviceLocator.get('db');
+  const tokenSecret = serviceLocator.get('tokenSecret');
   
-  var users = db.sublevel('users');
-  var authService = {};
+  const users = db.sublevel('users');
+  const authService = {};
   
-  authService.login = function(username, password, callback) {
-    users.get(username, function(err, user) {
-      if(err) return callback(err);
+  authService.login = (username, password, callback) => {
+    users.get(username, (err, user) => {
+      if (err) return callback(err);
       
-      bcrypt.compare(password, user.hash, function(err, res) {
-        if(err) return callback(err);
-        if(!res) return callback(new Error('Invalid password'));
+      bcrypt.compare(password, user.hash, (err, res) => {
+        if (err) return callback(err);
+        if (!res) return callback(new Error('Invalid password'));
         
-        var token = jwt.encode({
+        const token = jwt.encode({
           username: username,
           expire: Date.now() + (1000 * 60 * 60) //1 hour
         }, tokenSecret);
@@ -26,24 +28,24 @@ module.exports = function(serviceLocator) {
     });
   };
 
-  authService.checkToken = function(token, callback) {
+  authService.checkToken = (token, callback) => {
+    let userData;
+
     try {
       //jwt.decode will throw if the token is invalid
-      var userData = jwt.decode(token, tokenSecret);
-      if(userData.expire <= Date.now()) {
+      userData = jwt.decode(token, tokenSecret);
+      if (userData.expire <= Date.now()) {
         throw new Error('Token expired');
       }
     } catch(err) {
       return process.nextTick(callback.bind(null, err));
     }
       
-    users.get(userData.username, function(err, user) {
-      if(err) return callback(err);
+    users.get(userData.username, (err, user) => {
+      if (err) return callback(err);
       callback(null, {username: userData.username});
     });
   };
   
   return authService;
 };
-
-

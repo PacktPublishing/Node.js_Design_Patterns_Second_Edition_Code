@@ -1,11 +1,12 @@
+"use strict";
 
-module.exports = function(authService) {
-  var authController = {};
+module.exports = (authService) => {
+  const authController = {};
   
-  authController.login = function (req, res, next) {
+  authController.login = (req, res, next) => {
     authService.login(req.body.username, req.body.password,
-      function(err, result) {
-        if(err) {
+      (err, result) => {
+        if (err) {
           return res.status(401).send({
             ok: false,
             error: 'Invalid username/password'
@@ -16,10 +17,10 @@ module.exports = function(authService) {
     );
   };
 
-  authController.checkToken = function (req, res, next) {
+  authController.checkToken = (req, res, next) => {
     authService.checkToken(req.query.token,
-      function(err, result) {
-        if(err) {
+      (err, result) => {
+        if (err) {
           return res.status(401).send({
             ok: false,
             error: 'Token is invalid or expired'  
@@ -31,4 +32,4 @@ module.exports = function(authService) {
   };
   
   return authController;
-}
+};
