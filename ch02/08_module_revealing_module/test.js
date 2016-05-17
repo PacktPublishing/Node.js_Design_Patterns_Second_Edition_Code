@@ -2,7 +2,7 @@
 
 let mod = (() => {
   let privateFoo = () => {};
-  let privateVar = [];
+  let privateBar = [];
 
   let exported = {
     publicFoo: () => {},

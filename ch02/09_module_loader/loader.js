@@ -13,7 +13,7 @@ function loadModule(filename, module, require) {
 }
 
 // We intentionally use var in the next line to avoid "SyntaxError: Identifier 'require' has already been declared"
-var require = (moduleName) => {
+const require = (moduleName) => {
   console.log('Require invoked for module: ' + moduleName);
   let id = require.resolve(moduleName);      //[1]
   if(require.cache[id]) {           //[2]
