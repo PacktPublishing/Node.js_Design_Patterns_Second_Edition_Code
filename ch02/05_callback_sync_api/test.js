@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require('fs');
-let cache = {};
+const cache = {};
 function consistentReadSync(filename) {
   if(cache[filename]) {
     return cache[filename];

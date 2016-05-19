@@ -1,15 +1,14 @@
 "use strict";
 
 const urlParse = require('url').parse;
-const urlFormat = require('url').format;
 const urlResolve = require('url').resolve;
 const slug = require('slug');
 const path = require('path');
 const cheerio = require('cheerio');
 
 module.exports.urlToFilename = function urlToFilename(url) {
-  let parsedUrl = urlParse(url);
-  let urlPath = parsedUrl.path.split('/')
+  const parsedUrl = urlParse(url);
+  const urlPath = parsedUrl.path.split('/')
     .filter(function(component) {
       return component !== '';
     })
@@ -18,16 +17,16 @@ module.exports.urlToFilename = function urlToFilename(url) {
     })
     .join('/');
   let filename = path.join(parsedUrl.hostname, urlPath);
-  if(!path.extname(filename).match(/htm/)) {
+  if (!path.extname(filename).match(/htm/)) {
     filename += '.html';
   }
   return filename;
 };
 
 module.exports.getLinkUrl = function getLinkUrl(currentUrl, element) {
-  let link = urlResolve(currentUrl, element.attribs.href || "");
-  let parsedLink = urlParse(link);
-  let currentParsedUrl = urlParse(currentUrl);
+  const link = urlResolve(currentUrl, element.attribs.href || "");
+  const parsedLink = urlParse(link);
+  const currentParsedUrl = urlParse(currentUrl);
   if(parsedLink.hostname !== currentParsedUrl.hostname
     || !parsedLink.pathname) {
     return null;

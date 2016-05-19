@@ -38,7 +38,7 @@ function saveFile(filename, contents, callback) {
 }
 
 function download(url, filename, callback) {
-  console.log('Downloading ' + url);
+  console.log(`Downloading ${url}`);
   let body;
 
   async.series([
@@ -58,16 +58,16 @@ function download(url, filename, callback) {
       fs.writeFile(filename, body, callback);
     }
   ], err => {         //[4]
-    console.log('Downloaded and saved: ' + url);
     if(err) {
       return callback(err);
     }
+    console.log(`Downloaded and saved: ${url}`);
     callback(null, body);
   });
 }
 
 function spider(url, nesting, callback) {
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   fs.readFile(filename, 'utf8', function(err, body) {
     if(err) {
       if(err.code !== 'ENOENT') {

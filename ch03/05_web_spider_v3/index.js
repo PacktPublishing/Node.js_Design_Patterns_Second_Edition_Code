@@ -11,7 +11,7 @@ function spiderLinks(currentUrl, body, nesting, callback) {
     return process.nextTick(callback);
   }
 
-  let links = utilities.getPageLinks(currentUrl, body);  //[1]
+  const links = utilities.getPageLinks(currentUrl, body);  //[1]
   if(links.length === 0) {
     return process.nextTick(callback);
   }
@@ -43,16 +43,16 @@ function saveFile(filename, contents, callback) {
 }
 
 function download(url, filename, callback) {
-  console.log('Downloading ' + url);
+  console.log(`Downloading ${url}`);
   request(url, (err, response, body) => {
     if(err) {
       return callback(err);
     }
     saveFile(filename, body, err => {
-      console.log('Downloaded and saved: ' + url);
       if(err) {
         return callback(err);
       }
+      console.log(`Downloaded and saved: ${url}`);
       callback(null, body);
     });
   });
@@ -65,7 +65,7 @@ function spider(url, nesting, callback) {
   }
   spidering.set(url, true);
 
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   fs.readFile(filename, 'utf8', function(err, body) {
     if(err) {
       if(err.code !== 'ENOENT') {

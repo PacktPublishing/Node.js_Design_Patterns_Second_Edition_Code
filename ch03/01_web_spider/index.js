@@ -7,10 +7,10 @@ const path = require('path');
 const utilities = require('./utilities');
 
 function spider(url, callback) {
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   fs.exists(filename, exists => {        //[1]
     if(!exists) {
-      console.log("Downloading " + url);
+      console.log(`Downloading ${url}`);
       request(url, (err, response, body) => {      //[2]
         if(err) {
           callback(err);
@@ -40,8 +40,8 @@ spider(process.argv[2], (err, filename, downloaded) => {
   if(err) {
     console.log(err);
   } else if(downloaded){
-    console.log('Completed the download of "'+ filename +'"');
+    console.log(`Completed the download of "${filename}"`);
   } else {
-    console.log('"'+ filename +'" was already downloaded');
+    console.log(`"${filename}" was already downloaded`);
   }
 });

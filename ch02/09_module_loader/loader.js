@@ -5,7 +5,7 @@ const fs = require('fs');
 let originalRequire = require;
 
 function loadModule(filename, module, require) {
-  let wrappedSrc =
+  const wrappedSrc =
     `(function(module, exports, require) {
       ${fs.readFileSync(filename, 'utf8')}
     })(module, module.exports, require);`;
@@ -15,13 +15,13 @@ function loadModule(filename, module, require) {
 // We intentionally use var in the next line to avoid "SyntaxError: Identifier 'require' has already been declared"
 const require = (moduleName) => {
   console.log('Require invoked for module: ' + moduleName);
-  let id = require.resolve(moduleName);      //[1]
+  const id = require.resolve(moduleName);      //[1]
   if(require.cache[id]) {           //[2]
     return require.cache[id].exports;
   }
 
   //module metadata
-  let module = {               //[3]
+  const module = {               //[3]
     exports: {},
     id: id
   };

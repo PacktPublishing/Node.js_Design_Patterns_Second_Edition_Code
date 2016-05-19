@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require('fs');
-let cache = {};
+const cache = {};
 function inconsistentRead(filename, callback) {
   if(cache[filename]) {
     // invoked synchronously

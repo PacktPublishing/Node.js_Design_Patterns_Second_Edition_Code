@@ -5,8 +5,8 @@ const slug = require('slug');
 const path = require('path');
 
 module.exports.urlToFilename = function urlToFilename(url) {
-  let parsedUrl = urlParse(url);
-  let urlPath = parsedUrl.path.split('/')
+  const parsedUrl = urlParse(url);
+  const urlPath = parsedUrl.path.split('/')
     .filter(function(component) {
       return component !== '';
     })
