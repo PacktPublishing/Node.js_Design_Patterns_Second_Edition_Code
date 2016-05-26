@@ -1,14 +1,14 @@
 "use strict";
 
 function* iteratorGenerator(arr) {
-  for(var i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     yield arr[i];
   }
 }
 
-let iterator = iteratorGenerator(['apple', 'orange', 'watermelon']);
+const iterator = iteratorGenerator(['apple', 'orange', 'watermelon']);
 let currentItem = iterator.next();
-while(!currentItem.done) {
+while (!currentItem.done) {
   console.log(currentItem.value);
   currentItem = iterator.next();
 }

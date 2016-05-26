@@ -17,17 +17,17 @@ function spiderLinks(currentUrl, body, nesting) {
   }
 
   //returns a thunk
-  return function(callback) {
+  return callback => {
     let completed = 0, hasErrors = false;
-    let links = utilities.getPageLinks(currentUrl, body);
-    if(links.length === 0) {
+    const links = utilities.getPageLinks(currentUrl, body);
+    if (links.length === 0) {
       return process.nextTick(callback);
     }
 
     function done(err, result) {
       if(err && !hasErrors) {
         hasErrors = true;
-        callback(err);
+        return callback(err);
       }
       if(++completed === links.length && !hasErrors) {
         callback();
@@ -41,23 +41,23 @@ function spiderLinks(currentUrl, body, nesting) {
 }
 
 function* download(url, filename) {
-  console.log('Downloading ' + url);
-  let results = yield request(url);
-  let body = results[1];
+  console.log(`Downloading ${url}`);
+  const results = yield request(url);
+  const body = results[1];
   yield mkdirp(path.dirname(filename));
   yield writeFile(filename, body);
-  console.log('Downloaded and saved: ' + url);
+  console.log(`Downloaded and saved: ${url}`);
   return body;
 }
 
-let spidering = new Map();
+const spidering = new Map();
 function* spider(url, nesting) {
   if(spidering.has(url)) {
     return nextTick();
   }
   spidering.set(url, true);
   
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   let body;
   try {
     body = yield readFile(filename, 'utf8');

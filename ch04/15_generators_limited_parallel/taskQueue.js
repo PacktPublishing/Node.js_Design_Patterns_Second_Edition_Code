@@ -20,11 +20,11 @@ class TaskQueue {
   }
 
   spawnWorkers(concurrency) {
-    let self = this;
+    const self = this;
     for(let i = 0; i < concurrency; i++) {
       co(function* () {
         while(true) {
-          let task = yield self.nextTask();
+          const task = yield self.nextTask();
           yield task;
         }
       });
@@ -34,10 +34,10 @@ class TaskQueue {
   nextTask() {
     return callback => {
       if(this.taskQueue.length !== 0) {
-        callback(null, this.taskQueue.shift());
-      } else {
-        this.consumerQueue.push(callback);
+        return callback(null, this.taskQueue.shift());
       }
+
+      this.consumerQueue.push(callback);
     }
   }
 }

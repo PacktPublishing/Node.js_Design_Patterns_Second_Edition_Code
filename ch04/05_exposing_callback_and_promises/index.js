@@ -1,21 +1,17 @@
 "use strict";
 
 module.exports = function asyncDivision (dividend, divisor, cb) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {  // [1]
 
     process.nextTick(() => {
-      if (
-        typeof dividend !== 'number' ||
-        typeof divisor !== 'number' ||
-        divisor === 0
-      ){
-        let error = new Error('Invalid operands');
-        if (cb) { cb(error); }
-        reject(error);
+      const result = dividend / divisor;
+      if (isNaN(result) || !Number.isFinite(result)) {
+        const error = new Error('Invalid operands');
+        if (cb) { cb(error); }  // [2]
+        return reject(error);
       }
 
-      var result = dividend/divisor;
-      if (cb) { cb(null, result); }
+      if (cb) { cb(null, result); }  // [3]
       resolve(result);
     });
 

@@ -28,7 +28,7 @@ function* download(url, filename) {
   let body = response[1];
   yield mkdirp(path.dirname(filename));
   yield writeFile(filename, body);
-  console.log('Downloaded and saved: ' + url);
+  console.log(`Downloaded and saved: ${url}`);
   return body;
 }
 

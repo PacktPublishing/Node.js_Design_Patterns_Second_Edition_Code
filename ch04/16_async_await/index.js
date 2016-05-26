@@ -11,7 +11,7 @@ function getPageHtml(url) {
 }
 
 async function main() {
-  let html = await getPageHtml('http://google.com');
+  const html = await getPageHtml('http://google.com');
   console.log(html);
 }
 

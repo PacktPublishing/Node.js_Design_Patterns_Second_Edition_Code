@@ -20,7 +20,7 @@ function spiderLinks(currentUrl, body, nesting) {
 }
 
 function download(url, filename) {
-  console.log('Downloading ' + url);
+  console.log(`Downloading ${url}`);
   let body;
   return request(url)
     .then(response => {
@@ -29,7 +29,7 @@ function download(url, filename) {
     })
     .then(() => writeFile(filename, body))
     .then(() => {
-      console.log('Downloaded and saved: ' + url);
+      console.log(`Downloaded and saved: ${url}`);
       return body;
     })
   ;

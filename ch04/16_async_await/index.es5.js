@@ -1,39 +1,28 @@
 "use strict";
 
-var bable = require('babel');
-var request = require('request');
+let main = (() => {
+  var ref = _asyncToGenerator(function* () {
+    let html = yield getPageHtml('http://google.com');
+    console.log(html);
+  });
 
-function getQuote() {
-  var quote;
+  return function main() {
+    return ref.apply(this, arguments);
+  };
+})();
 
-  return new Promise(function (resolve, reject) {
-    request('http://ron-swanson-quotes.herokuapp.com/quotes', function (error, response, body) {
-      quote = body;
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
-      resolve(quote);
+const request = require('request');
+
+function getPageHtml(url) {
+  return new Promise((resolve, reject) => {
+    request(url, (error, response, body) => {
+      resolve(body);
     });
   });
 }
 
-function main() {
-  var quote;
-  return regeneratorRuntime.async(function main$(context$1$0) {
-    while (1) switch (context$1$0.prev = context$1$0.next) {
-      case 0:
-        context$1$0.next = 2;
-        return regeneratorRuntime.awrap(getQuote());
-
-      case 2:
-        quote = context$1$0.sent;
-
-        console.log(quote);
-
-      case 4:
-      case 'end':
-        return context$1$0.stop();
-    }
-  }, null, this);
-}
-
 main();
-console.log('Ron once said,');
+console.log('Loading...');
+

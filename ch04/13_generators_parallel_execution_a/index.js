@@ -16,22 +16,22 @@ function* spiderLinks(currentUrl, body, nesting) {
     return nextTick();
   }
   
-  let links = utilities.getPageLinks(currentUrl, body);
-  let tasks = links.map(link => spider(link, nesting - 1));
+  const links = utilities.getPageLinks(currentUrl, body);
+  const tasks = links.map(link => spider(link, nesting - 1));
   yield tasks;
 }
 
 function* download(url, filename) {
-  console.log('Downloading ' + url);
-  let results = yield request(url);
-  let body = results[1];
+  console.log(`Downloading ${url}`);
+  const results = yield request(url);
+  const body = results[1];
   yield mkdirp(path.dirname(filename));
   yield writeFile(filename, body);
-  console.log('Downloaded and saved: ' + url);
+  console.log(`Downloaded and saved: ${url}`);
   return body;
 }
 
-let spidering = new Map();
+const spidering = new Map();
 function* spider(url, nesting) {
   if(spidering.has(url)) {
     return nextTick();

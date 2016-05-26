@@ -6,7 +6,7 @@ function* fruitGenerator() {
   return 'watermelon';
 }
 
-let newFruitGenerator = fruitGenerator();
+const newFruitGenerator = fruitGenerator();
 console.log(newFruitGenerator.next());    //[1]
 console.log(newFruitGenerator.next());    //[2]
 console.log(newFruitGenerator.next());    //[3]

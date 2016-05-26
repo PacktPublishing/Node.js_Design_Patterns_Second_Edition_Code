@@ -9,7 +9,7 @@
   "author": "Luciano Mammino",
   "license": "ISC",
   "devDependencies": {
-    "babel": "^6.3.26",
+    "babel-cli": "^6.9.0",
     "babel-plugin-syntax-async-functions": "^6.3.13",
     "babel-plugin-transform-async-to-generator": "^6.4.0"
   },

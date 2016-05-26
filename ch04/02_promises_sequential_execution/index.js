@@ -17,16 +17,14 @@ function spiderLinks(currentUrl, body, nesting) {
   }
   let links = utilities.getPageLinks(currentUrl, body);
   links.forEach(link => {
-    promise = promise.then(function() {
-      return spider(link, nesting - 1);
-    });
+    promise = promise.then(() => spider(link, nesting - 1));
   });
   
   return promise;
 }
 
 function download(url, filename) {
-  console.log('Downloading ' + url);
+  console.log(`Downloading ${url}`);
   let body;
   return request(url)
     .then(response => {
@@ -35,7 +33,7 @@ function download(url, filename) {
     })
     .then(() => writeFile(filename, body))
     .then(() => {
-      console.log('Downloaded and saved: ' + url);
+      console.log(`Downloaded and saved: ${url}`);
       return body;
     })
   ;

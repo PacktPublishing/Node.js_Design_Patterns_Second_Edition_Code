@@ -16,7 +16,7 @@ function spiderLinks(currentUrl, body, nesting) {
     return Promise.resolve();
   }
   
-  let links = utilities.getPageLinks(currentUrl, body);
+  const links = utilities.getPageLinks(currentUrl, body);
   //we need the following because the Promise we create next
   //will never settle if there are no tasks to process
   if(links.length === 0) {
@@ -25,6 +25,7 @@ function spiderLinks(currentUrl, body, nesting) {
   
   return new Promise((resolve, reject) => {
     let completed = 0;
+    let errored = false;
     links.forEach(link => {
       let task = () => {
         return spider(link, nesting - 1)
@@ -33,7 +34,12 @@ function spiderLinks(currentUrl, body, nesting) {
               resolve();
             }
           })
-          .catch(reject)
+          .catch(() => {
+            if (!errored) {
+              errored = true;
+              reject();
+            }
+          })
         ;
       };
       downloadQueue.pushTask(task);
@@ -42,7 +48,7 @@ function spiderLinks(currentUrl, body, nesting) {
 }
 
 function download(url, filename) {
-  console.log('Downloading ' + url);
+  console.log(`Downloading ${url}`);
   let body;
   return request(url)
     .then(response => {
@@ -51,13 +57,13 @@ function download(url, filename) {
     })
     .then(() => writeFile(filename, body))
     .then(() => {
-      console.log('Downloaded and saved: ' + url);
+      console.log(`Downloaded and saved: ${url}`);
       return body;
     })
   ;
 }
 
-let spidering = new Map();
+const spidering = new Map();
 function spider(url, nesting) {
   if(spidering.has(url)) {
     return Promise.resolve();

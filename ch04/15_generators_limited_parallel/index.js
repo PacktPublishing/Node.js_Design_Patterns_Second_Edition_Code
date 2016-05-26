@@ -46,12 +46,12 @@ function spiderLinks(currentUrl, body, nesting) {
 
 function download(url, filename) {
   return co(function* () {
-    console.log('Downloading ' + url);
+    console.log(`Downloading ${url}`);
     let results = yield request(url);
     let body = results[1];
     yield mkdirp(path.dirname(filename));
     yield writeFile(filename, body);
-    console.log('Downloaded and saved: ' + url);
+    console.log(`Downloaded and saved: ${url}`);
     return body;
   });
 }
