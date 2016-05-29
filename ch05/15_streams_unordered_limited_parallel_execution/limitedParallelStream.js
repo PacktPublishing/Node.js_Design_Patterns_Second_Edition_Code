@@ -14,7 +14,7 @@ class LimitedParallelStream extends stream.Transform {
 
   _transform(chunk, enc, done) {
     this.running++;
-    this.userTransform(chunk, enc, this._onComplete.bind(this),  this.push.bind(this));
+    this.userTransform(chunk, enc,  this.push.bind(this), this._onComplete.bind(this));
     if(this.running < this.concurrency) {
       done();
     } else {
@@ -35,7 +35,7 @@ class LimitedParallelStream extends stream.Transform {
     if(err) {
       return this.emit('error', err);
     }
-    let tmpCallback = this.continueCallback;
+    const tmpCallback = this.continueCallback;
     this.continueCallback = null;
     tmpCallback && tmpCallback();
     if(this.running === 0) {

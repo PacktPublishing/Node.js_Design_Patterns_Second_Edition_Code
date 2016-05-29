@@ -3,7 +3,7 @@
 const stream = require('stream');
 const Chance = require('chance');
 
-let chance = new Chance();
+const chance = new Chance();
 
 class RandomStream extends stream.Readable {
   constructor(options) {
@@ -11,7 +11,7 @@ class RandomStream extends stream.Readable {
   }
 
   _read(size) {
-    let chunk = chance.string();          //[1]
+    const chunk = chance.string();          //[1]
     console.log(`Pushing chunk of size: ${chunk.length}`);
     this.push(chunk, 'utf8');             //[2]
     if(chance.bool({likelihood: 5})) {    //[3]

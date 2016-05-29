@@ -4,11 +4,11 @@ const tar = require('tar');
 const fstream = require('fstream');
 const path = require('path');
 
-let destination = path.resolve(process.argv[2]);
-let sourceA = path.resolve(process.argv[3]);
-let sourceB = path.resolve(process.argv[4]);
+const destination = path.resolve(process.argv[2]);
+const sourceA = path.resolve(process.argv[3]);
+const sourceB = path.resolve(process.argv[4]);
 
-let pack = tar.Pack();
+const pack = tar.Pack();
 pack.pipe(fstream.Writer(destination));
 
 let endCount = 0;
@@ -18,11 +18,11 @@ function onEnd() {
   }
 }
 
-let sourceStreamA = fstream.Reader({type: "Directory", path: sourceA})
+const sourceStreamA = fstream.Reader({type: "Directory", path: sourceA})
   .on('end', onEnd)
 ;
 
-let sourceStreamB = fstream.Reader({type: "Directory", path: sourceB})
+const sourceStreamB = fstream.Reader({type: "Directory", path: sourceB})
   .on('end', onEnd)
 ;
 

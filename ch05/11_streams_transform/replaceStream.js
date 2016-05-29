@@ -12,10 +12,10 @@ class ReplaceStream extends stream.Transform {
   }
 
   _transform(chunk, encoding, callback) {
-    let pieces = (this.tailPiece + chunk)         //[1]
+    const pieces = (this.tailPiece + chunk)         //[1]
       .split(this.searchString);
-    let lastPiece = pieces[pieces.length - 1];
-    let tailPieceLen = this.searchString.length - 1;
+    const lastPiece = pieces[pieces.length - 1];
+    const tailPieceLen = this.searchString.length - 1;
 
     this.tailPiece = lastPiece.slice(-tailPieceLen);     //[2]
     pieces[pieces.length - 1] = lastPiece.slice(0,-tailPieceLen);

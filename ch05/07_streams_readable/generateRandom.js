@@ -1,10 +1,10 @@
 "use strict";
 
 const RandomStream = require('./randomStream');
-let randomStream = new RandomStream();
+const randomStream = new RandomStream();
 
 randomStream.on('readable', () => {
-  var chunk;
+  let chunk;
   while((chunk = randomStream.read()) !== null) {
     console.log(`Chunk received: ${chunk.toString()}`);
   }

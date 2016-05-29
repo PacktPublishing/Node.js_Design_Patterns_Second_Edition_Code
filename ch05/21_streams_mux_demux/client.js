@@ -27,8 +27,8 @@ function multiplexChannels(sources, destination) {
   }
 }
 
-let socket = net.connect(3000, () => {        //[1]
-  let child = child_process.fork(           //[2]
+const socket = net.connect(3000, () => {        //[1]
+  const child = child_process.fork(           //[2]
     process.argv[2],
     process.argv.slice(3),
     {silent: true}

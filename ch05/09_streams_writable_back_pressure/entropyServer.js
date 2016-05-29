@@ -1,7 +1,7 @@
 "use strict";
 
 const Chance = require('chance');
-let chance = new Chance();
+const chance = new Chance();
 
 require('http').createServer((req, res) => {
   res.writeHead(200, {'Content-Type': 'text/plain'});

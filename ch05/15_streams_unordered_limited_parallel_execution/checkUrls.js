@@ -7,7 +7,7 @@ const LimitedParallelStream = require('./limitedParallelStream');
 
 fs.createReadStream(process.argv[2])
   .pipe(split())
-  .pipe(new LimitedParallelStream(2, (url, enc, done, push) => {
+  .pipe(new LimitedParallelStream(2, (url, enc, push, done) => {
     if(!url) return done();
     request.head(url, (err, response) => {
       push(url + ' is ' + (err ? 'down' : 'up') + '\n');
