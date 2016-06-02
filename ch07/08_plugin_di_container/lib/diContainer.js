@@ -28,7 +28,7 @@ module.exports = function() {
   };
   
   diContainer.inject = (factory) => {
-    let args = fnArgs(factory)
+    const args = fnArgs(factory)
       .map(function(dependency) {
         return diContainer.get(dependency);
       });

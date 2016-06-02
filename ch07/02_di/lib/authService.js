@@ -4,8 +4,8 @@ const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt');
 
 module.exports = (db, tokenSecret) => {
-  let users = db.sublevel('users');
-  let authService = {};
+  const users = db.sublevel('users');
+  const authService = {};
   
   authService.login = (username, password, callback) => {
     users.get(username, (err, user) => {
@@ -15,7 +15,7 @@ module.exports = (db, tokenSecret) => {
         if(err) return callback(err);
         if(!res) return callback(new Error('Invalid password'));
         
-        let token = jwt.encode({
+        const token = jwt.encode({
           username: username,
           expire: Date.now() + (1000 * 60 * 60) //1 hour
         }, tokenSecret);

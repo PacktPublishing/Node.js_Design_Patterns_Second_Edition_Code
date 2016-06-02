@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = (serviceLocator) => {
-  let authService = serviceLocator.get('authService');
-  let authController = {};
+  const authService = serviceLocator.get('authService');
+  const authController = {};
   
   authController.login = (req, res, next) => {
     authService.login(req.body.username, req.body.password,
@@ -33,4 +33,4 @@ module.exports = (serviceLocator) => {
   };
   
   return authController;
-}
+};

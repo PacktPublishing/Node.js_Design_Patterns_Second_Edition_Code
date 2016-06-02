@@ -1,9 +1,9 @@
 "use strict";
 
 module.exports = () => {
-  let dependencies = {};
-  let factories = {};
-  let serviceLocator = {};
+  const dependencies = {};
+  const factories = {};
+  const serviceLocator = {};
   
   serviceLocator.factory = (name, factory) => {
     factories[name] = factory;
@@ -15,7 +15,7 @@ module.exports = () => {
   
   serviceLocator.get = (name) => {
     if (!dependencies[name]) {
-      let factory = factories[name];
+      const factory = factories[name];
       dependencies[name] = factory && factory(serviceLocator);
       if (!dependencies[name]) {
         throw new Error('Cannot find module: ' + name);

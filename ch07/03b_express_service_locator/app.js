@@ -14,11 +14,10 @@ app.set('tokenSecret', 'SHHH!');
 app.set('db', require('./lib/db')(app));
 app.set('authService', require('./lib/authService')(app));
 
-let authController = require('./lib/authController');
+const authController = require('./lib/authController');
 
 app.post('/login', authController.login);
 app.get('/checkToken', authController.checkToken);
-
 
 app.use(errorHandler());
 http.createServer(app).listen(3000, () => {

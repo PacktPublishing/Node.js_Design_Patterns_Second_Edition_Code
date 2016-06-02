@@ -18,7 +18,7 @@ module.exports = (serviceLocator) => {
         if (err) return callback(err);
         if (!res) return callback(new Error('Invalid password'));
         
-        let token = jwt.encode({
+        const token = jwt.encode({
           username: username,
           expire: Date.now() + (1000 * 60 * 60) //1 hour
         }, tokenSecret);

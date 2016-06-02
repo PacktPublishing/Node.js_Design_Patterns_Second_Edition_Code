@@ -17,7 +17,7 @@ module.exports = () => {
   
   diContainer.get = (name) => {
     if (!dependencies[name]) {
-      let factory = factories[name];
+      const factory = factories[name];
       dependencies[name] = factory && 
           diContainer.inject(factory);
       if (!dependencies[name]) {
@@ -28,7 +28,7 @@ module.exports = () => {
   };
   
   diContainer.inject = (factory) => {
-    let args = fnArgs(factory)
+    const args = fnArgs(factory)
       .map(function(dependency) {
         return diContainer.get(dependency);
       });
@@ -36,4 +36,4 @@ module.exports = () => {
   };
   
   return diContainer;
-}
+};

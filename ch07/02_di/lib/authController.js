@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = (authService) => {
-  let authController = {};
+  const authController = {};
   
   authController.login = (req, res, next) => {
     authService.login(req.body.username, req.body.password,
@@ -32,4 +32,4 @@ module.exports = (authService) => {
   };
   
   return authController;
-}
+};

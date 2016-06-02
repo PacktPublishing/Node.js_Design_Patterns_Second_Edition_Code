@@ -9,7 +9,7 @@ const async = require('async');
 const db = sublevel(level('example-db', {valueEncoding: 'json'}));
 const usersDb = db.sublevel('users');
 
-let users = [
+const users = [
   {username: 'alice', password: 'secret'},
   {username: 'bob', password: 'secret'},
   {username: 'trudy', password: 'secret'}
