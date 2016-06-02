@@ -9,4 +9,4 @@ module.exports = class ImageJpg extends Image {
     }
     super(path);
   }
-}
+};

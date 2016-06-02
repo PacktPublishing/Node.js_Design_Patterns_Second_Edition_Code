@@ -1,7 +1,7 @@
 "use strict";
 
 function decorate(component) {
-  let proto = Object.getPrototypeOf(component);
+  const proto = Object.getPrototypeOf(component);
   
   function Decorator(component) {
     this.component = component;
@@ -28,6 +28,6 @@ class Greeter {
   }
 }
 
-let decoratedGreeter = decorate(new Greeter());
+const decoratedGreeter = decorate(new Greeter());
 console.log(decoratedGreeter.hello('world')); // uses original method
 console.log(decoratedGreeter.greetings()); // uses new method

@@ -16,9 +16,9 @@ function createImage(name) {
   }
 }
 
-let image1 = createImage('photo.jpg');
-let image2 = createImage('photo.gif');
-let image3 = createImage('photo.png');
+const image1 = createImage('photo.jpg');
+const image2 = createImage('photo.gif');
+const image3 = createImage('photo.png');
 
 console.log(image1, image2, image3);
 

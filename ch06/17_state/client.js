@@ -2,7 +2,7 @@
 
 const createFailsafeSocket = require('./failsafeSocket');
 
-let failsafeSocket = createFailsafeSocket({port: 5000});
+const failsafeSocket = createFailsafeSocket({port: 5000});
 
 setInterval(() => {
   //send current memory usage

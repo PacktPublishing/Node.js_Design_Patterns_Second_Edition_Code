@@ -1,9 +1,9 @@
 "use strict";
 
 function createPerson(name) {
-  let privateProperties = {};
+  const privateProperties = {};
 
-  let person = {
+  const person = {
     setName: name => {
       if(!name) throw new Error('A person must have a name');
       privateProperties.name = name;
@@ -17,5 +17,5 @@ function createPerson(name) {
   return person;
 }
 
-let person = createPerson('James Joyce');
+const person = createPerson('James Joyce');
 console.log(person.getName(), person);

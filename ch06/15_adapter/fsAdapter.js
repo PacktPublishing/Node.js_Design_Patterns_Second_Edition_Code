@@ -3,7 +3,7 @@
 const path = require('path');
 
 module.exports = function createFsAdapter(db) {
-  let fs = {};
+  const fs = {};
 
   fs.readFile = (filename, options, callback) => {
     if (typeof options === 'function') {

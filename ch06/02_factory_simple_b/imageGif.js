@@ -9,4 +9,4 @@ module.exports = class ImageGif extends Image {
     }
     super(path);
   }
-}
+};

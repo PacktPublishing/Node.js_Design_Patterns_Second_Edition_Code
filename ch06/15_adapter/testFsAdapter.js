@@ -3,8 +3,8 @@
 const levelup = require('level');
 const fsAdapter = require('./fsAdapter');
 
-let db = levelup('./fsDB', {valueEncoding: 'binary'});
-let fs = fsAdapter(db);
+const db = levelup('./fsDB', {valueEncoding: 'binary'});
+const fs = fsAdapter(db);
 
 fs.writeFile('file.txt', 'Hello!', () => {
   fs.readFile('file.txt', {encoding: 'utf8'}, (err, res) => {

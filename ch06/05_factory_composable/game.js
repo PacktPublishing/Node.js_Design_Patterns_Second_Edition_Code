@@ -2,7 +2,7 @@
 
 const stampit = require('stampit');
 
-const Character = stampit().
+const character = stampit().
     props({
         name: 'anonymous',
         lifePoints: 100,
@@ -11,7 +11,7 @@ const Character = stampit().
     })
 ;
 
-const Mover = stampit().
+const mover = stampit().
     methods({
         move(xIncr, yIncr) {
             this.x += xIncr;
@@ -21,7 +21,7 @@ const Mover = stampit().
     })
 ;
 
-const Slasher = stampit().
+const slasher = stampit().
     methods({
         slash(direction) {
             console.log(`${this.name} slashed to the ${direction}`);
@@ -29,7 +29,7 @@ const Slasher = stampit().
     })
 ;
 
-const Shooter = stampit().
+const shooter = stampit().
     props({
         bullets: 6
     }).
@@ -43,13 +43,13 @@ const Shooter = stampit().
     })
 ;
 
-const Runner = stampit.compose(Character, Mover);
-const Samurai = stampit.compose(Character, Mover, Slasher);
-const Sniper = stampit.compose(Character, Shooter);
-const Gunslinger = stampit.compose(Character, Mover, Shooter);
-const WesternSamurai = stampit.compose(Gunslinger, Samurai);
+const runner = stampit.compose(character, mover);
+const samurai = stampit.compose(character, mover, slasher);
+const sniper = stampit.compose(character, shooter);
+const gunslinger = stampit.compose(character, mover, shooter);
+const westernSamurai = stampit.compose(gunslinger, samurai);
 
-let gojiro = WesternSamurai();
+let gojiro = westernSamurai();
 gojiro.name = 'Gojiro Kiryu';
 gojiro.move(1,0);
 gojiro.slash('left');

@@ -4,7 +4,7 @@ const request = require('request');
 const util = require('util');
 
 //The target
-let statusUpdateService = {
+const statusUpdateService = {
   statusUpdates: {},
   sendUpdate: function(status) {
     console.log('Status sent: ' + status);
@@ -23,7 +23,7 @@ let statusUpdateService = {
 function createSendStatusCmd(service, status) {
   let postId = null;
   
-  let command = () => {
+  const command = () => {
     postId = service.sendUpdate(status);
   };
   
@@ -60,7 +60,7 @@ class Invoker {
   }
 
   undo () {
-    let cmd = this.history.pop();
+    const cmd = this.history.pop();
     cmd.undo();
     console.log('Command undone', cmd.serialize());
   }
@@ -76,8 +76,8 @@ class Invoker {
 }
 
 //The Client code
-let invoker = new Invoker();
-let command = createSendStatusCmd(statusUpdateService, 'HI!');
+const invoker = new Invoker();
+const command = createSendStatusCmd(statusUpdateService, 'HI!');
 invoker.run(command);
 invoker.delay(command, 1000 * 60 * 60);
 invoker.undo();

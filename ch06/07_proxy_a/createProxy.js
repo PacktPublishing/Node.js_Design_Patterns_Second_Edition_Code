@@ -1,7 +1,7 @@
 "use strict";
 
 function createProxy(subject) {
-  let proto = Object.getPrototypeOf(subject);
+  const proto = Object.getPrototypeOf(subject);
 
   function Proxy(subject) {
     this.subject = subject;

@@ -1,11 +1,11 @@
 "use strict";
 
-let lastCall = new Map();
+const lastCall = new Map();
 
 module.exports = function *(next) {
 
   // inbound
-  let now = new Date();
+  const now = new Date();
   if (lastCall.has(this.ip) && now.getTime() - lastCall.get(this.ip).getTime() < 1000) {
     return this.status = 429; // Too Many Requests
   }

@@ -6,6 +6,6 @@ function createImage(name) {
   return new Image(name);
 }
 
-let image = createImage('photo.jpeg');
+const image = createImage('photo.jpeg');
 
 console.log(image);

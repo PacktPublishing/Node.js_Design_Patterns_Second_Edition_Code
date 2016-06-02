@@ -14,7 +14,7 @@ module.exports = class ZmqMiddlewareManager {
   }
 
   send(data) {
-    let message = {
+    const message = {
       data: data
     };
 

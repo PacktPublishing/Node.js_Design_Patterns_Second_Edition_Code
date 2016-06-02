@@ -4,10 +4,10 @@ const zmq = require('zmq');
 const ZmqMiddlewareManager = require('./zmqMiddlewareManager');
 const jsonMiddleware = require('./jsonMiddleware');
 
-let request = zmq.socket('req');
+const request = zmq.socket('req');
 request.connect('tcp://127.0.0.1:5000');
 
-let zmqm = new ZmqMiddlewareManager(request);
+const zmqm = new ZmqMiddlewareManager(request);
 
 zmqm.use(jsonMiddleware.json());
 zmqm.use({

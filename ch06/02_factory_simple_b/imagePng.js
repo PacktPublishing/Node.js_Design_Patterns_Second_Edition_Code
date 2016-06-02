@@ -9,4 +9,4 @@ module.exports = class ImagePng extends Image {
     }
     super(path);
   }
-}
+};

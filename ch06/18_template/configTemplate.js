@@ -10,7 +10,7 @@ class ConfigTemplate {
   }
 
   save (file) {
-    console.log('Serializing to ' + file);
+    console.log(`Serializing to ${file}`);
     fs.writeFileSync(file, this._serialize(this.data));
   }
 

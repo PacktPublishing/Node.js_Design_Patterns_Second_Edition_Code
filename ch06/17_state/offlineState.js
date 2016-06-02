@@ -13,7 +13,7 @@ module.exports = class OfflineState {
   }
 
   activate() {     //[3]
-    let retry = () => {
+    const retry = () => {
       setTimeout(() => this.activate(), 500);
     };
 

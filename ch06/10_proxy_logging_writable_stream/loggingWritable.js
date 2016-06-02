@@ -3,7 +3,7 @@
 const fs = require('fs');
 
 function createLoggingWritable(writableOrig) {
-  let proto = Object.getPrototypeOf(writableOrig);
+  const proto = Object.getPrototypeOf(writableOrig);
 
   function LoggingWritable(writableOrig) {
     this.writableOrig = writableOrig;
@@ -36,8 +36,8 @@ function createLoggingWritable(writableOrig) {
   return new LoggingWritable(writableOrig);
 }
 
-let writable = fs.createWriteStream('test.txt');
-let writableProxy = createLoggingWritable(writable);
+const writable = fs.createWriteStream('test.txt');
+const writableProxy = createLoggingWritable(writable);
 
 writableProxy.write('First chunk');
 writableProxy.write('Second chunk');
