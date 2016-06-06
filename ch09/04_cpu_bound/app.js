@@ -6,11 +6,11 @@ const SubsetSum = require('./subsetSum');
 //const SubsetSum = require('./subsetSumFork');
 
 http.createServer((req, res) => {
-  let url = require('url').parse(req.url, true);
+  const url = require('url').parse(req.url, true);
   if(url.pathname === '/subsetSum') {
-    let data = JSON.parse(url.query.data);
+    const data = JSON.parse(url.query.data);
     res.writeHead(200);
-    let subsetSum = new SubsetSum(url.query.sum, data);
+    const subsetSum = new SubsetSum(url.query.sum, data);
     subsetSum.on('match', match => {
       res.write('Match: ' + JSON.stringify(match) + '\n');
     });

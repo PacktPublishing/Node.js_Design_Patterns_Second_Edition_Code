@@ -3,8 +3,8 @@
 const level = require('level');
 const sublevel = require('level-sublevel');
 
-let db = sublevel(level('example-db', {valueEncoding: 'json'}));
-let salesDb = db.sublevel('sales');
+const db = sublevel(level('example-db', {valueEncoding: 'json'}));
+const salesDb = db.sublevel('sales');
 
 module.exports = function totalSales(item, callback) {
   console.log('totalSales() invoked');

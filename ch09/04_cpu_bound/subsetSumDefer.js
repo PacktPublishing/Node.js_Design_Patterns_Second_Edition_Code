@@ -30,7 +30,7 @@ class SubsetSumDefer extends EventEmitter {
 
   _processSubset(subset) {
     console.log('Subset', ++this.totalSubsets, subset);
-    let res = subset.reduce((prev, item) => prev + item, 0);
+    const res = subset.reduce((prev, item) => prev + item, 0);
     if(res == this.sum) {
       this.emit('match', subset);
     }

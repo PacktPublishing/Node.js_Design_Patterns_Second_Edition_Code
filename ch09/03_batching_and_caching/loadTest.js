@@ -3,14 +3,14 @@
 const request = require('request');
 const http = require('http');
 
-let start = Date.now();
+const start = Date.now();
 let count = 20;
-let interval = 200;
+const interval = 200;
 let completed = count;
-let agent = new http.Agent();
+const agent = new http.Agent();
 agent.maxSockets = count;
-let query = process.argv[2] ? process.argv[2] : 'item=book';
-let id = setInterval(() => {
+const query = process.argv[2] ? process.argv[2] : 'item=book';
+const id = setInterval(() => {
   request({
     url: 'http://localhost:8000?'+query,
     pool: agent
@@ -19,8 +19,7 @@ let id = setInterval(() => {
     if (err) return console.log(err);
     console.log(res.statusCode, res.body);
     if (!--completed) {
-      console.log('All completed in: ' 
-        + (Date.now() - start) + 'ms');
+      console.log(`All completed in: ${Date.now() - start}ms`);
     }
   });
   if (!--count) {

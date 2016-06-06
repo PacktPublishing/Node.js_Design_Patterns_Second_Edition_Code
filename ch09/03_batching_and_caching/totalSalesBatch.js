@@ -2,7 +2,7 @@
 
 const totalSales = require('./totalSales');
 
-let queues = {};
+const queues = {};
 module.exports = function totalSalesBatch(item, callback) {
   if(queues[item]) {  // [1]
     console.log('Batching operation');
@@ -11,7 +11,7 @@ module.exports = function totalSalesBatch(item, callback) {
   
   queues[item] = [callback];  // [2]
   totalSales(item, (err, res) => {
-    var queue = queues[item];  // [3]
+    const queue = queues[item];  // [3]
     queues[item] = null;
     queue.forEach(cb => cb(err, res));
   });

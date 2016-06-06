@@ -7,10 +7,9 @@ const totalSales = require('./totalSales');
 //const totalSales = require('./totalSalesCache');
 
 http.createServer((req, res) => {
-  let query = url.parse(req.url, true).query;
+  const query = url.parse(req.url, true).query;
   totalSales(query.item, (err, sum) => {
     res.writeHead(200);
-    res.end('Total sales for item ' + 
-      query.item + ' is ' + sum);
+    res.end(`Total sales for item ${query.item} is ${sum}`);
   });
 }).listen(8000, () => console.log('Started'));

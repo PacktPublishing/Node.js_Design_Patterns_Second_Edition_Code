@@ -5,9 +5,9 @@ const level = require('level');
 const uuid = require('node-uuid');
 const async = require('async');
 
-let db = sublevel(level('example-db', {valueEncoding: 'json'}));
-let salesDb = db.sublevel('sales');
-let items = ['book', 'game', 'app', 'song', 'movie'];
+const db = sublevel(level('example-db', {valueEncoding: 'json'}));
+const salesDb = db.sublevel('sales');
+const items = ['book', 'game', 'app', 'song', 'movie'];
 
 async.times(100000, (n, callback) => {
   salesDb.put(uuid.v4(), {

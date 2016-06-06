@@ -3,7 +3,7 @@
 const SubsetSum = require('./subsetSum');
 
 process.on('message', msg => {  // [1]
-  let subsetSum = new SubsetSum(msg.sum, msg.set);
+  const subsetSum = new SubsetSum(msg.sum, msg.set);
   
   subsetSum.on('match', data => {  // [2]
     process.send({event: 'match', data: data});

@@ -3,7 +3,7 @@
 const pify = require('pify');  // [1]
 const totalSales = pify(require('./totalSales'));
 
-let cache = {};
+const cache = {};
 module.exports = function totalSalesPromises(item) {
   if (cache[item]) {  // [2]
     return cache[item];

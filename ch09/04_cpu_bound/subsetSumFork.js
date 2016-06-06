@@ -15,7 +15,7 @@ class SubsetSumFork extends EventEmitter {
     workers.acquire((err, worker) => {  // [1]
       worker.send({sum: this.sum, set: this.set});
 
-      let onMessage = msg => {
+      const onMessage = msg => {
         if (msg.event === 'end') {  // [3]
           worker.removeListener('message', onMessage);
           workers.release(worker);

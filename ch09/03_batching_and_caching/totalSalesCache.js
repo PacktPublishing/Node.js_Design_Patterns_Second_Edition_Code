@@ -2,11 +2,11 @@
 
 const totalSales = require('./totalSales');
 
-let queues = {};
-let cache = {};
+const queues = {};
+const cache = {};
 
 module.exports = function totalSalesBatch(item, callback) {
-  let cached = cache[item];
+  const cached = cache[item];
   if (cached) {
     console.log('Cache hit');
     return process.nextTick(callback.bind(null, null, cached));
@@ -26,7 +26,7 @@ module.exports = function totalSalesBatch(item, callback) {
       }, 30 * 1000); //30 seconds expiry
     }
     
-    let queue = queues[item];
+    const queue = queues[item];
     queues[item] = null;
     queue.forEach(cb => cb(err, res));
   });

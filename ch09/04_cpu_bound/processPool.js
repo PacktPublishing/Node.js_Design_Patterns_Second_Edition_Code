@@ -30,7 +30,7 @@ class ProcessPool {
 
   release(worker) {
     if(this.waiting.length > 0) {  // [1]
-      let waitingCallback = this.waiting.shift();
+      const waitingCallback = this.waiting.shift();
       waitingCallback(null, worker);
     }
     this.active = this.active.filter(w => worker !==  w);  // [2]
