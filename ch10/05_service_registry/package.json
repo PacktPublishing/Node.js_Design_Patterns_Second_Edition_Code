@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "consul": "^0.25.0",
     "http-proxy": "^1.13.2",
-    "seaport": "^2.0.9"
+    "portfinder": "^1.0.3"
   }
 }

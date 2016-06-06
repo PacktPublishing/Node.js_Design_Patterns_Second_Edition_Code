@@ -4,11 +4,11 @@ works in combination with a service registry.
 Before running the app, install the dependencies:
   npm install
   
-Then install the seaport server
-  npm install seaport -g
+Then install consul follow instructions on the official website:
+  https://www.consul.io/intro/getting-started/install.html
   
-Start the seaport server with:
-  seaport listen 9090
+Start the consul dev agent with:
+  consul agent -dev
   
 Run the load balancer with:
   node loadBalancer

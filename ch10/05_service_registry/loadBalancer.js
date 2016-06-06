@@ -2,9 +2,9 @@
 
 const http = require('http');
 const httpProxy = require('http-proxy');
-const seaport = require('seaport').connect('localhost', 9090);
+const consul = require('consul')();
 
-let routing = [
+const routing = [
   {
     path: '/api',
     service: 'api-service',
@@ -25,13 +25,21 @@ http.createServer((req, res) => {
     //Starts with the route path?
     return req.url.indexOf(route.path) === 0;
   });
-  
-  let servers = seaport.query(route.service);
-  if (!servers.length) {
-    res.writeHead(502);
-    return res.end('Bad gateway');
-  }
 
-  route.index = (route.index + 1) % servers.length;
-  proxy.web(req, res, {target: servers[route.index]});
-}).listen(8080, () => console.log('Started'));
+  consul.agent.service.list((err, services) => {
+    const servers = [];
+    Object.keys(services).filter(id => {
+      if (services[id].Tags.indexOf(route.service) > -1) {
+        servers.push(`http://${services[id].Address}:${services[id].Port}`)
+      }
+    });
+
+    if (!servers.length) {
+      res.writeHead(502);
+      return res.end('Bad gateway');
+    }
+
+    route.index = (route.index + 1) % servers.length;
+    proxy.web(req, res, {target: servers[route.index]});
+  });
+}).listen(8080, () => console.log('Load balancer started on port 8080'));
