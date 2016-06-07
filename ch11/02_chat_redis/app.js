@@ -7,7 +7,7 @@ const redisPub = redis.createClient();
 
 //static file server
 const server = require('http').createServer(
-  require('ecstatic')({root: __dirname + '/www'})
+  require('ecstatic')({root: `${__dirname}/www`})
 );
 
 const wss = new WebSocketServer({server: server});

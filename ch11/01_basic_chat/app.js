@@ -4,7 +4,7 @@ const WebSocketServer = require('ws').Server;
 
 //static file server
 const server = require('http').createServer(  //[1]
-  require('ecstatic')({root: __dirname + '/www'})
+  require('ecstatic')({root: `${__dirname}/www`})
 );
 
 const wss = new WebSocketServer({server: server});  //[2]

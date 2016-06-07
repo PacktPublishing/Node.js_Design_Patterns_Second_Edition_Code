@@ -9,8 +9,8 @@ req.initialize().then(() => {
 });
 
 function sendRandomRequest() {
-  let a = Math.round(Math.random() * 100);
-  let b = Math.round(Math.random() * 100);
+  const a = Math.round(Math.random() * 100);
+  const b = Math.round(Math.random() * 100);
   req.request('requests_queue', {a: a, b: b}, 
     res => {
       console.log(`${a} + ${b} = ${res.sum}`);

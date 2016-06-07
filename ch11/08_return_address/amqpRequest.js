@@ -28,8 +28,8 @@ class AMQPRequest {
 
   _listenForResponses() {
     return this.channel.consume(this.replyQueue, msg => {
-      let correlationId = msg.properties.correlationId;
-      let handler = this.idToCallbackMap[correlationId];
+      const correlationId = msg.properties.correlationId;
+      const handler = this.idToCallbackMap[correlationId];
       if (handler) {
         handler(JSON.parse(msg.content.toString()));
       }
@@ -37,7 +37,7 @@ class AMQPRequest {
   }
 
   request(queue, message, callback) {
-    let id = uuid.v4();
+    const id = uuid.v4();
     this.idToCallbackMap[id] = callback;
     this.channel.sendToQueue(queue,
       new Buffer(JSON.stringify(message)),

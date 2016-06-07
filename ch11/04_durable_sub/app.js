@@ -8,7 +8,7 @@ let httpPort = process.argv[2] || 8080;
 
 //static file server 
 const server = require('http').createServer(
-  require('ecstatic')({root: __dirname + '/www'}) 
+  require('ecstatic')({root: `${__dirname}/www`})
 );
 
 let channel, queue;

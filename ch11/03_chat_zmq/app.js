@@ -6,7 +6,7 @@ const zmq = require('zmq');
 
 //static file server
 const server = require('http').createServer(
-  require('ecstatic')({root: __dirname + '/www'})
+  require('ecstatic')({root: `${__dirname}/www`})
 );
 
 const pubSocket = zmq.socket('pub');

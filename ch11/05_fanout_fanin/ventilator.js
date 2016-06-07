@@ -15,14 +15,14 @@ variationsStream(alphabet, maxLength)
   .on('data', combination => {
     batch.push(combination);
     if (batch.length === batchSize) {  // [2]
-      let msg = {searchHash: searchHash, variations: batch};
+      const msg = {searchHash: searchHash, variations: batch};
       ventilator.send(JSON.stringify(msg));
       batch = [];
     }
   })
   .on('end', () => {
     //send remaining combinations
-    let msg = {searchHash: searchHash, variations: batch};
+    const msg = {searchHash: searchHash, variations: batch};
     ventilator.send(JSON.stringify(msg));
   })
 ;

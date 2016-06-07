@@ -22,7 +22,7 @@ class AMQPReply {
 
   handleRequest(handler) {
     return this.channel.consume(this.queue, msg => {
-      let content = JSON.parse(msg.content.toString());
+      const content = JSON.parse(msg.content.toString());
       handler(content, reply => {
         this.channel.sendToQueue(
           msg.properties.replyTo,

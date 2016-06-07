@@ -28,7 +28,7 @@ amqp
   })
   .then(() => {
     return channel.consume(queue, msg => {  // [5]
-      let content = msg.content.toString();
+      const content = msg.content.toString();
       console.log(`Saving message: ${content}`);
       db.put(timestamp(), content, err => {
         if (!err) channel.ack(msg);

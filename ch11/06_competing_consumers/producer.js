@@ -27,7 +27,7 @@ function produce() {
     .on('data', combination => {
       batch.push(combination);
       if (batch.length === batchSize) {
-        let msg = {searchHash: searchHash, variations: batch};
+        const msg = {searchHash: searchHash, variations: batch};
         channel.sendToQueue('jobs_queue', 
           new Buffer(JSON.stringify(msg)));
         batch = [];
@@ -35,7 +35,7 @@ function produce() {
     })
     .on('end', () => {
       //send remaining combinations
-      let msg = {searchHash: searchHash, variations: batch};
+      const msg = {searchHash: searchHash, variations: batch};
       channel.sendToQueue(
           'jobs_queue', 
           new Buffer(JSON.stringify(msg)), 
