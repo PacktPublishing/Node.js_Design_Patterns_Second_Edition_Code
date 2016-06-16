@@ -17,28 +17,28 @@ class FindPattern extends EventEmitter {
 
   find () {
     this.files.forEach( file => {
-        fs.readFile(file, 'utf8', (err, content) => {
-          if (err) {
-            return this.emit('error', err);
-          }
+      fs.readFile(file, 'utf8', (err, content) => {
+        if (err) {
+          return this.emit('error', err);
+        }
 
-          this.emit('fileread', file);
+        this.emit('fileread', file);
 
-          let match;
-          if (match = content.match(this.regex)) {
-            match.forEach(elem => this.emit('found', file, elem));
-          }
-        });
+        let match;
+        if (match = content.match(this.regex)) {
+          match.forEach(elem => this.emit('found', file, elem));
+        }
+      });
     });
     return this;
   }
 }
 
-let findPatternObject = new FindPattern(/hello \w+/);
+const findPatternObject = new FindPattern(/hello \w+/);
 findPatternObject
   .addFile('fileA.txt')
   .addFile('fileB.json')
   .find()
-  .on('found', (file, match) => console.log('Matched "' + match + '" in file ' + file))
-  .on('error', err => console.log('Error emitted ' + err.message))
+  .on('found', (file, match) => console.log(`Matched "${match}" in file ${file}`))
+  .on('error', err => console.log(`Error emitted ${err.message}`))
 ;

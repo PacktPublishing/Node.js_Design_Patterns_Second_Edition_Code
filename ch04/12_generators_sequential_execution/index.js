@@ -16,7 +16,7 @@ function* spiderLinks(currentUrl, body, nesting) {
     return nextTick();
   }
   
-  let links = utilities.getPageLinks(currentUrl, body);
+  const links = utilities.getPageLinks(currentUrl, body);
   for(let i = 0; i < links.length; i++) {
     yield spider(links[i], nesting - 1);
   }
@@ -24,8 +24,8 @@ function* spiderLinks(currentUrl, body, nesting) {
 
 function* download(url, filename) {
   console.log('Downloading ' + url);
-  let response = yield request(url);
-  let body = response[1];
+  const response = yield request(url);
+  const body = response[1];
   yield mkdirp(path.dirname(filename));
   yield writeFile(filename, body);
   console.log(`Downloaded and saved: ${url}`);
@@ -33,7 +33,7 @@ function* download(url, filename) {
 }
 
 function* spider(url, nesting) {
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   let body;
   try {
     body = yield readFile(filename, 'utf8');

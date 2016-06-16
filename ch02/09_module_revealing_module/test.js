@@ -1,10 +1,10 @@
 "use strict";
 
-let mod = (() => {
-  let privateFoo = () => {};
-  let privateBar = [];
+const mod = (() => {
+  const privateFoo = () => {};
+  const privateBar = [];
 
-  let exported = {
+  const exported = {
     publicFoo: () => {},
     publicBar: () => {}
   };

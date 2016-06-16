@@ -13,8 +13,8 @@ function spiderLinks(currentUrl, body, nesting) {
     return Promise.resolve();
   }
   
-  let links = utilities.getPageLinks(currentUrl, body);
-  let promises = links.map(link => spider(link, nesting - 1));
+  const links = utilities.getPageLinks(currentUrl, body);
+  const promises = links.map(link => spider(link, nesting - 1));
   
   return Promise.all(promises);
 }
@@ -35,14 +35,14 @@ function download(url, filename) {
   ;
 }
 
-let spidering = new Map();
+const spidering = new Map();
 function spider(url, nesting) {
   if(spidering.has(url)) {
     return Promise.resolve();
   }
   spidering.set(url, true);
   
-  let filename = utilities.urlToFilename(url);
+  const filename = utilities.urlToFilename(url);
   return readFile(filename, 'utf8')
     .then(
       body => spiderLinks(url, body, nesting),

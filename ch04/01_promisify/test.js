@@ -2,7 +2,7 @@
 
 const promisify = require('./promisify.js');
 
-let delayedDivision = (dividend, divisor, cb) => {
+const delayedDivision = (dividend, divisor, cb) => {
   setTimeout(() => {
     if (
       typeof dividend !== 'number' ||
@@ -17,7 +17,7 @@ let delayedDivision = (dividend, divisor, cb) => {
 };
 
 
-let promisifiedDivision = promisify(delayedDivision);
+const promisifiedDivision = promisify(delayedDivision);
 
 promisifiedDivision(10, 2)
   .then((value) => console.log(value))

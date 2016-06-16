@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require('fs');
-let cache = {};
+const cache = {};
 function consistentReadAsync(filename, callback) {
   if(cache[filename]) {
     process.nextTick(() => callback(cache[filename]));

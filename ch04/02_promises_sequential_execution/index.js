@@ -15,7 +15,7 @@ function spiderLinks(currentUrl, body, nesting) {
   if(nesting === 0) {
     return promise;
   }
-  let links = utilities.getPageLinks(currentUrl, body);
+  const links = utilities.getPageLinks(currentUrl, body);
   links.forEach(link => {
     promise = promise.then(() => spider(link, nesting - 1));
   });
