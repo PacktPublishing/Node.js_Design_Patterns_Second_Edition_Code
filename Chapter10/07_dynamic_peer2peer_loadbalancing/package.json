@@ -1,0 +1,15 @@
+{
+  "name": "07_dynamic_peer2peer_loadbalancing",
+  "version": "1.0.0",
+  "description": "This sample demonstrates how to distribute the traffic across multiple servers without the need of a standalone load balancer. This is a variation of the previous sample, using a service registry.",
+  "main": "apiRequest.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.69.0",
+    "seaport": "^2.0.9"
+  }
+}

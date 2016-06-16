@@ -1,0 +1,15 @@
+{
+  "name": "13_streams_sequential_execution",
+  "version": "1.0.0",
+  "description": "This examples illustrates how to use streams to build a sequential execution process. To run the example you need to run:",
+  "main": "concat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "from2-array": "0.0.4",
+    "through2": "^2.0.1"
+  }
+}

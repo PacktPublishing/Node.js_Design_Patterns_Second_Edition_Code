@@ -1,0 +1,15 @@
+{
+  "name": "20_streams_merge",
+  "version": "1.0.0",
+  "description": "This example shows how to merge two streams.",
+  "main": "mergeTar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fstream": "^1.0.8",
+    "tar": "^2.2.1"
+  }
+}

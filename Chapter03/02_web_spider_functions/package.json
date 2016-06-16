@@ -1,0 +1,16 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "request": "^2.67.0",
+    "slug": "^0.9.1"
+  }
+}

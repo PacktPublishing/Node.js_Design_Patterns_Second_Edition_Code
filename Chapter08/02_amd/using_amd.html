@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Load UMD module from AMD</title>
+    <script src="node_modules/requirejs/require.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        requirejs.config({
+          baseUrl: 'node_modules',
+          paths: {
+            mustache: './mustache/mustache',
+            umdModule: '../umdModule'
+          }
+        });
+        require(['umdModule'], function(umdModule) {
+          var hello = umdModule.sayHello('Browser!');
+          var body = document.getElementsByTagName("body")[0];
+          body.innerHTML = hello;
+        });
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "20_command",
+  "version": "1.0.0",
+  "description": "This sample demonstrates a simple implementation of the Command pattern.",
+  "main": "command.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.69.0"
+  }
+}

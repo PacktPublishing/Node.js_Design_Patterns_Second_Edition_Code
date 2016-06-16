@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "amqplib": "^0.4.1",
+    "variations-stream": "^0.1.3"
+  }
+}

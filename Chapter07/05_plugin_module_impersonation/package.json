@@ -1,0 +1,24 @@
+{
+  "name": "05_plugin_module_impersonation",
+  "version": "1.0.0",
+  "description": "This sample demonstrates how to build a logout plugin for the  authentication server,  using hard-coded dependencies and the module impersonation pattern.",
+  "main": "app.js",
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "authsrv-plugin-logout": "^0.0.0",
+    "bcrypt": "^0.8.6",
+    "body-parser": "^1.15.0",
+    "errorhandler": "^1.4.3",
+    "express": "^4.13.4",
+    "jwt-simple": "^0.5.0",
+    "level": "^1.4.0",
+    "level-sublevel": "^6.5.4",
+    "node-uuid": "^1.4.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

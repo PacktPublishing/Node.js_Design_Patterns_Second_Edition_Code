@@ -1,0 +1,15 @@
+{
+  "name": "14_streams_unordered_parallel_execution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "checkUrls.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.69.0",
+    "split": "^1.0.0"
+  }
+}

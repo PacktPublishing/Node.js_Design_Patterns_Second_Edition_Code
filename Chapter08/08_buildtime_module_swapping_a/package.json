@@ -1,0 +1,14 @@
+{
+  "name": "08_buildtime_module_swapping_a",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^1.12.14"
+  }
+}
