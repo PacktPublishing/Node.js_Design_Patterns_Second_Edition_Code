@@ -11,7 +11,7 @@ function multiplexChannels(sources, destination) {
       .on('readable', function() {    //[1]
         let chunk;
         while ((chunk = this.read()) !== null) {
-          let outBuff = new Buffer(1 + 4 + chunk.length);  //[2]
+          const outBuff = new Buffer(1 + 4 + chunk.length);  //[2]
           outBuff.writeUInt8(i, 0);
           outBuff.writeUInt32BE(chunk.length, 1);
           chunk.copy(outBuff, 5);
@@ -19,7 +19,7 @@ function multiplexChannels(sources, destination) {
           destination.write(outBuff);          //[3]
         }
       })
-      .on('end', function () {    //[4]
+      .on('end', () => {    //[4]
         if (--totalChannels === 0) {
           destination.end();
         }
