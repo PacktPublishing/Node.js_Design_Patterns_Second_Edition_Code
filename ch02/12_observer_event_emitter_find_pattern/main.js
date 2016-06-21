@@ -4,7 +4,7 @@ const EventEmitter = require('events').EventEmitter;
 const fs = require('fs');
 
 function findPattern(files, regex) {
-  let emitter = new EventEmitter();
+  const emitter = new EventEmitter();
   files.forEach(function(file) {
     fs.readFile(file, 'utf8', (err, content) => {
       if(err)
