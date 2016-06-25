@@ -3,14 +3,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const definePlugin = new webpack.DefinePlugin({
-  "__BROWSER__": "true"
-});
-
-const uglify = new webpack.optimize.UglifyJsPlugin({
-  beautify: true,
-  dead_code: true
-});
+const moduleReplacementPlugin =
+  new webpack.NormalModuleReplacementPlugin(/alertServer.js$/,'./alertBrowser.js');
 
 module.exports = {
   entry:  path.join(__dirname, "src", "main.js"),
@@ -18,5 +12,5 @@ module.exports = {
     path: path.join(__dirname, "dist"),
     filename: "bundle.js"
   },
-  plugins: [definePlugin, uglify]
+  plugins: [moduleReplacementPlugin]
 };
