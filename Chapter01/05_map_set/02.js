@@ -1,6 +1,6 @@
 "use strict";
 
-let tests = new Map();
+const tests = new Map();
 tests.set(() => 2+2, 4);
 tests.set(() => 2*2, 4);
 tests.set(() => 2/2, 1);

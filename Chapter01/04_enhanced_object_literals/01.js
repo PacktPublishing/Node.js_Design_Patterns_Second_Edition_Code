@@ -1,7 +1,7 @@
 "use strict";
 
-let x = 22;
-let y = 17;
-let obj = { x, y };
+const x = 22;
+const y = 17;
+const obj = { x, y };
 
 console.log(obj);

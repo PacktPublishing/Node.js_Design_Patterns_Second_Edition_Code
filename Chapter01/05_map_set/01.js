@@ -1,6 +1,6 @@
 "use strict";
 
-let profiles = new Map();
+const profiles = new Map();
 profiles.set('twitter', '@adalovelace');
 profiles.set('facebook', 'adalovelace');
 profiles.set('googleplus', 'ada');

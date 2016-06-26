@@ -1,6 +1,6 @@
 "use strict";
 
-let s = new Set([0, 1, 2, 3]);
+const s = new Set([0, 1, 2, 3]);
 
 s.add(3); // will not be added
 s.size; // 4

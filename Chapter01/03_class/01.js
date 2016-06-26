@@ -14,7 +14,7 @@ Person.older = function(person1, person2) {
   return (person1.age >= person2.age) ? person1 : person2;
 };
 
-let luciano = new Person('Luciano', 'Mammino', 29);
+const luciano = new Person('Luciano', 'Mammino', 29);
 console.log(luciano.getFullName());
-let alan = new Person('Alan', 'Turing', 104);
+const alan = new Person('Alan', 'Turing', 104);
 console.log(Person.older(luciano, alan));

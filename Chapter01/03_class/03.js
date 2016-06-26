@@ -27,5 +27,5 @@ class PersonWithMiddlename extends Person {
   }
 }
 
-let alan = new PersonWithMiddlename('Alan', 'Mathison', 'Turing', 104);
+const alan = new PersonWithMiddlename('Alan', 'Mathison', 'Turing', 104);
 console.log(alan.getFullName());
