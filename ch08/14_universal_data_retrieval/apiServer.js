@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/authors', (req, res, next) => {
-  let data = Object.keys(AUTHORS).map(id => {
+  const data = Object.keys(AUTHORS).map(id => {
     return {
       'id': id,
       'name': AUTHORS[id].name
@@ -29,7 +29,7 @@ app.get('/authors/:id', (req, res, next) => {
     return next();
   }
 
-  let data = AUTHORS[req.params.id];
+  const data = AUTHORS[req.params.id];
   res.json(data);
 });
 

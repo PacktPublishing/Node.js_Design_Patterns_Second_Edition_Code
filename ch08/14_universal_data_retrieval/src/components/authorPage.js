@@ -8,7 +8,7 @@ class AuthorPage extends React.Component {
   static loadProps(context, cb) {
     xhrClient.get(`authors/${context.params.id}`)
       .then(response => {
-        let author = response.data;
+        const author = response.data;
         cb(null, {author});
       })
       .catch(error => cb(error))

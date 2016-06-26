@@ -33,7 +33,7 @@ app.get('*', (req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search)
     } else if (renderProps) {
       loadPropsOnServer(renderProps, {}, (err, asyncProps, scriptTag) => {
-        let markup = ReactDom.renderToString(<AsyncProps {...renderProps} {...asyncProps} />);
+        const markup = ReactDom.renderToString(<AsyncProps {...renderProps} {...asyncProps} />);
         res.render('index', {markup, scriptTag});
 
       });

@@ -6,7 +6,7 @@ const AUTHORS = require('../authors');
 
 class AuthorPage extends React.Component {
   render() {
-    let author = AUTHORS[this.props.params.id];
+    const author = AUTHORS[this.props.params.id];
     return (
       <div>
         <h2>{author.name}'s major works</h2>

@@ -8,7 +8,7 @@ class AuthorsIndex extends React.Component {
   static loadProps(context, cb) {
     xhrClient.get('authors')
       .then(response => {
-        let authors = response.data;
+        const authors = response.data;
         cb(null, {authors});
       })
       .catch(error => cb(error))
