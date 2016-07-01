@@ -1,8 +1,7 @@
 "use strict";
 
 const ToFileStream = require('./toFileStream.js');
-
-let tfs = new ToFileStream();
+const tfs = new ToFileStream();
 
 tfs.write({path: "file1.txt", content: "Hello"});
 tfs.write({path: "file2.txt", content: "Node.js"});

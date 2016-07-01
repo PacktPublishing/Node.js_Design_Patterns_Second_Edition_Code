@@ -2,8 +2,8 @@
 
 const stampit = require('stampit');
 
-const character = stampit().
-  props({
+const character = stampit()
+  .props({
     name: 'anonymous',
     lifePoints: 100,
     x: 0,
@@ -11,8 +11,8 @@ const character = stampit().
   })
 ;
 
-const mover = stampit().
-  methods({
+const mover = stampit()
+  .methods({
     move(xIncr, yIncr) {
       this.x += xIncr;
       this.y += yIncr;
@@ -21,19 +21,19 @@ const mover = stampit().
   })
 ;
 
-const slasher = stampit().
-  methods({
+const slasher = stampit()
+  .methods({
     slash(direction) {
       console.log(`${this.name} slashed to the ${direction}`);
     }
   })
 ;
 
-const shooter = stampit().
-  props({
+const shooter = stampit()
+  .props({
       bullets: 6
-  }).
-  methods({
+  })
+  .methods({
     shoot(direction) {
       if (this.bullets > 0) {
         --this.bullets;

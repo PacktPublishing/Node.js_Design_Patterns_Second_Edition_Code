@@ -8,7 +8,7 @@ require('http').createServer((req, res) => {
 
   function generateMore() {             //[1]
     while(chance.bool({likelihood: 95})) {
-      let shouldContinue = res.write(
+      const shouldContinue = res.write(
         chance.string({length: (16 * 1024) - 1})     //[2]
     );
       if(!shouldContinue) {             //[3]

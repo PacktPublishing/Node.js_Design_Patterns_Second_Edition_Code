@@ -5,7 +5,7 @@ module.exports = class OnlineState {
     this.failsafeSocket = failsafeSocket;
   }
 
-  send (data) {     //[1]
+  send(data) {     //[1]
     this.failsafeSocket.socket.write(data);
   };
 
