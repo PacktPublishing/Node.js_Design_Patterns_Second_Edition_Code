@@ -26,7 +26,8 @@ app.get('*', (req, res) => {
       } else {
         res.status(404).send('Not found')
       }
-    });
+    }
+  );
 });
 
 server.listen(3000, (err) => {

@@ -13,7 +13,7 @@ const pubSocket = zmq.socket('pub');
 pubSocket.bind(`tcp://127.0.0.1:${args['pub']}`);
 
 const subSocket = zmq.socket('sub');
-let subPorts = [].concat(args['sub']);
+const subPorts = [].concat(args['sub']);
 subPorts.forEach(p => {
   console.log(`Subscribing to ${p}`);
   subSocket.connect(`tcp://127.0.0.1:${p}`);
