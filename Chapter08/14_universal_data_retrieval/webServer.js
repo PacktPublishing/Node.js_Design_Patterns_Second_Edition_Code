@@ -2,11 +2,10 @@
 
 const http = require('http');
 const Express = require('express');
-const favicon = require('serve-favicon');
 const httpProxy = require('http-proxy');
 const React = require('react');
 const AsyncProps = require('async-props').default;
-const loadPropsOnServer = AsyncProps.loadPropsOnServer;
+const loadPropsOnServer = require('async-props').loadPropsOnServer;
 const ReactDom = require('react-dom/server');
 const Router = require('react-router');
 const routesConfig = require('./src/routesConfig');
@@ -19,10 +18,9 @@ const proxy = httpProxy.createProxyServer({
 });
 
 app.set('view engine', 'ejs');
-app.use(favicon(__dirname + '/dist/favicon.ico'));
 app.use('/dist', Express.static('dist'));
 app.use('/api', (req, res) => {
-  proxy.web(req, res, {target: targetUrl});
+  proxy.web(req, res);
 });
 
 app.get('*', (req, res) => {
