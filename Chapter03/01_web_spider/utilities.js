@@ -11,7 +11,7 @@ module.exports.urlToFilename = function urlToFilename(url) {
       return component !== '';
     })
     .map(function(component) {
-      return slug(component);
+      return slug(component, { remove: null });
     })
     .join('/');
   let filename = path.join(parsedUrl.hostname, urlPath);
