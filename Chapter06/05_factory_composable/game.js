@@ -2,16 +2,26 @@
 
 const stampit = require('stampit');
 
-const character = stampit()
+const haveName = stampit()
   .props({
-    name: 'anonymous',
-    lifePoints: 100,
+    name: 'anonymous'
+  })
+;
+
+const haveCoordinates = stampit()
+  .props({
     x: 0,
     y: 0
   })
 ;
 
-const mover = stampit()
+const character = stampit(haveName, haveCoordinates)
+  .props({
+    lifePoints: 100
+  })
+;
+
+const mover = stampit(haveName, haveCoordinates)
   .methods({
     move(xIncr, yIncr) {
       this.x += xIncr;
@@ -21,7 +31,7 @@ const mover = stampit()
   })
 ;
 
-const slasher = stampit()
+const slasher = stampit(haveName)
   .methods({
     slash(direction) {
       console.log(`${this.name} slashed to the ${direction}`);
@@ -43,11 +53,11 @@ const shooter = stampit()
   })
 ;
 
-const runner = stampit.compose(character, mover);
-const samurai = stampit.compose(character, mover, slasher);
-const sniper = stampit.compose(character, shooter);
-const gunslinger = stampit.compose(character, mover, shooter);
-const westernSamurai = stampit.compose(gunslinger, samurai);
+const runner = stampit(character, mover);
+const samurai = stampit(character, mover, slasher);
+const sniper = stampit(character, shooter);
+const gunslinger = stampit(character, mover, shooter);
+const westernSamurai = stampit(gunslinger, samurai);
 
 const gojiro = westernSamurai();
 gojiro.name = 'Gojiro Kiryu';
