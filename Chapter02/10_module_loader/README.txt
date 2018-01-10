@@ -3,7 +3,7 @@ partially compatible with Node's own module system.
 To try it, run the loader and provide it with a module name, as you were requiring
 it from inside a module, for example:
 
-node loader ./main.js
+node ./main.js loader
 
 The command above will instrument our homemade module loader
 to use 'main.js' as entry point. From that point on, all the modules
