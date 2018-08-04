@@ -4,7 +4,7 @@ module.exports = function(callbackBasedApi) {
   return function promisified() {
     const args = [].slice.call(arguments);
     return new Promise((resolve, reject) => {    //[1]
-      args.push((err, result) => {      //[2]
+      args.push(function(err, result) {      //[2]
         if(err) {
           return reject(err);          //[3]
         }

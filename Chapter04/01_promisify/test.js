@@ -28,3 +28,16 @@ promisifiedDivision(10, 0)
   .then((value) => console.log(value))
   .catch((error) => console.log(error))
 ;
+
+const delayedMultiDivision = (numA, numB, numC, cb) => {
+  setTimeout(() => {
+    cb(null, numA/2, numB/2, numC/2);
+  }, 1000);
+};
+
+const promisifiedMultiDivision = promisify(delayedMultiDivision);
+
+promisifiedMultiDivision(7, 12, 542)
+  .then((value) => console.log(value))
+  .catch((error) => console.log(error))
+;
