@@ -28,15 +28,6 @@ function spiderLinks(currentUrl, body, nesting, callback) {
   iterate(0);
 }
 
-function saveFile(filename, contents, callback) {
-  mkdirp(path.dirname(filename), err => {
-    if(err) {
-      return callback(err);
-    }
-    fs.writeFile(filename, contents, callback);
-  });
-}
-
 function download(url, filename, callback) {
   console.log(`Downloading ${url}`);
   let body;

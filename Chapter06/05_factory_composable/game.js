@@ -15,13 +15,13 @@ const haveCoordinates = stampit()
   })
 ;
 
-const character = stampit(haveName, haveCoordinates)
+const character = stampit.compose(haveName, haveCoordinates)
   .props({
     lifePoints: 100
   })
 ;
 
-const mover = stampit(haveName, haveCoordinates)
+const mover = stampit.compose(haveName, haveCoordinates)
   .methods({
     move(xIncr, yIncr) {
       this.x += xIncr;
@@ -31,7 +31,7 @@ const mover = stampit(haveName, haveCoordinates)
   })
 ;
 
-const slasher = stampit(haveName)
+const slasher = stampit.compose(haveName)
   .methods({
     slash(direction) {
       console.log(`${this.name} slashed to the ${direction}`);
@@ -53,11 +53,11 @@ const shooter = stampit()
   })
 ;
 
-const runner = stampit(character, mover);
-const samurai = stampit(character, mover, slasher);
-const sniper = stampit(character, shooter);
-const gunslinger = stampit(character, mover, shooter);
-const westernSamurai = stampit(gunslinger, samurai);
+const runner = stampit.compose(character, mover);
+const samurai = stampit.compose(character, mover, slasher);
+const sniper = stampit.compose(character, shooter);
+const gunslinger = stampit.compose(character, mover, shooter);
+const westernSamurai = stampit.compose(gunslinger, samurai);
 
 const gojiro = westernSamurai();
 gojiro.name = 'Gojiro Kiryu';
