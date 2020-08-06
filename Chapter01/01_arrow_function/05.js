@@ -10,5 +10,5 @@ DelayedGreeter.prototype.greet = function() {
   }).bind(this), 500);
 };
 
-var greeter = new DelayedGreeter('World');
+const greeter = new DelayedGreeter('World');
 greeter.greet(); // will print “Hello World”
