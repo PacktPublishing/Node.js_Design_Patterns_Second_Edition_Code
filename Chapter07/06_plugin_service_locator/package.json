@@ -6,7 +6,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.3",
     "authsrv-plugin-logout": "^0.0.0",
-    "bcrypt": "^0.8.6",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.15.0",
     "errorhandler": "^1.4.3",
     "express": "^4.13.4",
