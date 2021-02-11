@@ -1,3 +1,5 @@
+# ⚠️ NOTE: A new edition of this book is available: check out [nodejsdesignpatterns.com](https://nodejsdesignpatterns.com).
+
 # Node.js Design Patterns, Second Edition
 
 Get the best out of Node.js by mastering its most powerful components and patterns to create modular and scalable applications with ease.
